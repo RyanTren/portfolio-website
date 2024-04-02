@@ -1,15 +1,15 @@
-if(window.location.pathname == "/index.html"){ // Change the condition accordingly
-    var audio = document.getElementById("homeAudio");
-    homeAudio.volume = 0.01;
-    console.log("home page audio loaded!");
-} else if(window.location.pathname == "/resume.html"){
+if (window.location.href.includes("index.html")) {
+    var homeAudio = document.getElementById("homeAudio");
+    homeAudio.volume = 0.015;
+    console.log(homeAudio); // Check if homeAudio is null or undefined
+} else if (window.location.href.includes("resume.html")) {
     var resumeAudio = document.getElementById("resumeAudio");
-    resumeAudio.volume = 0.02;
-    console.log("resume page audio loaded!");
-} else if(window.location.pathname == "/projects.html"){
+    resumeAudio.volume = 0.01;
+    console.log(homeAudio); // Check if homeAudio is null or undefined
+} else if (window.location.href.includes("projects.html")) {
     var projectAudio = document.getElementById("projectAudio");
-    projectAudio.volume = 0.03;
-    console.log("project page audio loaded!");
-} else{
+    projectAudio.volume = 0.02;
+    console.log(homeAudio); // Check if homeAudio is null or undefined
+} else {
     console.log("No audio loaded!");
 }
