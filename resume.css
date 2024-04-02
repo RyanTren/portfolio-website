@@ -67,6 +67,7 @@ body {
 }
 
 .resume-image {
+    border-radius: 15vw;
     max-width: 100%; /* Ensure image rescales responsively */
 }
 
