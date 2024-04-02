@@ -12,4 +12,8 @@ if (window.location.href.includes("index.html")) {
     console.log(homeAudio); // Check if homeAudio is null or undefined
 } else {
     console.log("No audio loaded!");
+<<<<<<< Updated upstream
 }
+=======
+};
+>>>>>>> Stashed changes
