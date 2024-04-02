@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    if(window.location.pathname == "/index.html"){
+    console.log("Path: " + window.location.pathname); // Log the path
+    if(window.location.pathname == "/"){ // Change the condition accordingly
         var homeAudio = document.getElementById("homeAudio");
         homeAudio.volume = 0.015;
         console.log("home page audio loaded!");
