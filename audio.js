@@ -12,7 +12,5 @@ document.addEventListener("DOMContentLoaded", function() {
         var projectAudio = document.getElementById("projectAudio");
         projectAudio.volume = 0.03;
         console.log("project page audio loaded!");
-    } else {
-        console.log("No audio loaded!");
-    }
+    } 
 });
