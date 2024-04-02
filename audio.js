@@ -13,5 +13,4 @@ if(window.location.pathname == "/index.html"){
     console.log("project page audio loaded!");
 }else{
     console.log("No audio loaded!");
-    console.log("damn you actually suck at front end dev...");
 };
