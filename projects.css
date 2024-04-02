@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+
+@font-face {
+    font-family: 'veteran typewriter';
+    src: url('assets/veteran typewriter.ttf') format('truetype');
+}
+
+body {
+    font-family: 'veteran typewriter', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    margin: 0; /* Ensure no default margin */
+}
+
+.container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Add padding */
+    position: relative; /* Ensure position is relative */
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.content {
+    width: 100%; /* Full width */
+    max-width: 800px; /* Limit maximum width of content */
+}
+
+.content nav {
+    display: flex;
+    align-items: center;
+}
+
+.content h1 {
+    font-family: 'veteran typewriter';
+    font-size: 3vw; /* Responsive font size */
+    color: whitesmoke;
+    text-shadow: 0 0 5px #000;
+    margin-bottom: 3vh; /* Responsive margin */
+}
+
+.content a {
+    font-size: 0.5vw; /* Responsive font size */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+    color: #fff;
+    margin-bottom: 1vh; /* Responsive margin */
+    padding: 2vh 3vh; /* Responsive padding */
+    border-radius: 40px;
+    transition: 0.3s;
+    align-self: center;
+    text-decoration: none;
+}
+
+.content a:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #000;
+}
+
+.content a:not(:last-child) {
+    margin-right: 1vw; /* Responsive margin */
+}
+
+.background-clip {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%; /* Ensure video covers entire container */
+    height: 100%; /* Ensure video covers entire container */
+    object-fit: cover; /* Ensure video covers entire container */
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
