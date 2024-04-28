@@ -16,6 +16,16 @@ body {
     margin: 0; /* Ensure no default margin */
 }
 
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    background-color: rgba(red, green, blue, 1);
+    color: white;
+
+}
+
 .container {
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
@@ -51,7 +61,7 @@ body {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
     color: #fff;
     margin-bottom: 1vh; /* Responsive margin */
-    padding: 2vh 3vh; /* Responsive padding */
+    padding: 20px; /* Responsive padding */
     border-radius: 40px;
     transition: 0.3s;
     align-self: center;

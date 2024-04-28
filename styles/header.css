@@ -1,0 +1,58 @@
+*{
+    font-family: 'veteran typewriter', sans-serif;
+}
+
+.header{
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 100;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+}
+
+img{
+    margin-left: 1px;
+    height: 20px;
+    width: vw;
+}
+
+@font-face {
+    font-family: 'veteran typewriter';
+    src: url('assets/veteran typewriter.ttf') format('truetype');
+}
+
+h1{
+    font-family: 'veteran typewriter';
+    font-size: 3vw; /* Responsive font size */
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 5px #000;
+    margin-bottom: 1vh; /*Responsive margin */
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+
+a{
+    font-size: 1.25vw; /* Responsive font size */
+    border-radius: 15px;
+    color: rgb(255, 255, 255);
+    /* margin-bottom: 1vh; Responsive margin */
+    padding: 2vh 3vh; /* Responsive padding */
+    transition: 0.3s;
+    margin: 10px;
+    align-self: center;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #000;
+}
+
+a:not(:last-child) {
+    margin-right: 1vw; /*Responsive margin */
+}
