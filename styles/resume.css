@@ -18,9 +18,9 @@ body {
 }
 
 .container {
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    position: relative; /* Ensure position is relative */
+    width: 100vw; 
+    height: 100vh; 
+    position: relative; 
 }
 
 .content {
@@ -32,43 +32,22 @@ body {
     z-index: 1; /* Ensure content appears above background */
 }
 
-.content nav {
-    display: flex;
-    align-items: center;
-}
-
-.content h1 {
-    font-family: 'veteran typewriter';
-    font-size: 3vw; /* Responsive font size */
-    color: whitesmoke;
-    text-shadow: 0 0 5px #000;
-    margin-bottom: 3vh; /* Responsive margin */
-}
-
-.content a {
-    font-size: 1vw; /* Responsive font size */
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
-    color: #fff;
-    margin-bottom: 1vh; /* Responsive margin */
-    padding: 2vh 3vh; /* Responsive padding */
-    border-radius: 40px;
-    transition: 0.3s;
-    align-self: center;
-    text-decoration: none;
-}
-
-.content a:hover {
-    background-color: rgba(255, 255, 255, 0.85);
-    color: #000;
-}
-
-.content a:not(:last-child) {
-    margin-right: 1vw; /* Responsive margin */
-}
-
 .resume-image {
-    border-radius: 15vw;
-    max-width: 100%; /* Ensure image rescales responsively */
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+    justify-self: center;
+    position: center;
+
+    margin-top: 20%;
+
+    border-color: black;
+    box-shadow: 1px 1px 5px 1px black;
+    border-radius: 1vw;
+
+    height: 100%;
+    /* width: 100%; */
+    max-width: 100%;
 }
 
 .background-clip {
@@ -76,12 +55,11 @@ body {
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center the background image */
-    width: 110%; /* Ensure video covers entire viewport */
-    height: 110%; /* Ensure video covers entire viewport */
+    width: 115%; /* Ensure video covers entire viewport */
+    height: 115%; /* Ensure video covers entire viewport */
     object-fit: cover; /* Crop the background image to cover the container */
     z-index: -1; /* Send background to back */
 }
-
 
 @media (max-width: 1200px) {
     .content {
