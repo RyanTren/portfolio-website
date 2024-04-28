@@ -16,6 +16,13 @@ body {
     margin: 0; /* Ensure no default margin */
 }
 
+img{
+    padding-left: 1px;
+    height: 20px;
+    width: vw;
+
+}
+
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -57,6 +64,7 @@ body {
 }
 
 .content a {
+    font-family: 'veteran typewriter', sans-serif;
     font-size: 1vw; /* Responsive font size */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
     color: #fff;
@@ -66,6 +74,7 @@ body {
     transition: 0.3s;
     align-self: center;
     text-decoration: none;
+    flex-direction: column;
 }
 
 .content a:hover {

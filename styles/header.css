@@ -3,15 +3,14 @@
 }
 
 .header{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
-    z-index: 100;
     align-items: center;
     width: 100%;
-    position: fixed;
+    z-index: 100;
 }
 
 img{
@@ -27,7 +26,7 @@ img{
 
 h1{
     font-family: 'veteran typewriter';
-    font-size: 3vw; /* Responsive font size */
+    font-size: 1.5vw; /* Responsive font size */
     color: rgb(255, 255, 255);
     text-shadow: 0 0 5px #000;
     margin-bottom: 1vh; /*Responsive margin */
@@ -37,7 +36,7 @@ h1{
 }
 
 a{
-    font-size: 1.25vw; /* Responsive font size */
+    font-size: 1vw; /* Responsive font size */
     border-radius: 15px;
     color: rgb(255, 255, 255);
     /* margin-bottom: 1vh; Responsive margin */
