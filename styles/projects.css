@@ -5,13 +5,13 @@
     font-family: Helvetica;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'veteran typewriter';
     src: url('assets/veteran typewriter.ttf') format('truetype');
-}
+} */
 
 body {
-    font-family: 'veteran typewriter', sans-serif;
+    font-family: sans-serif;
     overflow-x: hidden; /* Prevent horizontal scrollbar */
     /* margin: 0; Ensure no default margin */
 }
@@ -19,6 +19,30 @@ body {
 .content {
     width: 100%; /* Full width */
     max-width: 800px; /* Limit maximum width of content */
+}
+
+.project-button{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.project-button:hover{
+    background-color: rgba(12, 112, 179, 0.4);
+    color: white;
+
 }
 
 .container {
