@@ -23,7 +23,7 @@ body {
 
 .project-button{
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.596);
     color: white;
     text-align: center;
 
@@ -41,8 +41,8 @@ body {
 
 .project-button:hover{
     background-color: rgba(12, 112, 179, 0.4);
+    scale: .9 ;
     color: white;
-
 }
 
 .container {
