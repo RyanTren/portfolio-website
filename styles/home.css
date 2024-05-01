@@ -10,6 +10,50 @@
     src: url('assets/veteran typewriter.ttf') format('truetype');
 }
 
+
+/* Hover Animation */
+.button{
+    background-color: transparent;
+    border: none;
+    --border-right: 6px;
+    --animation-color: #58d796;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 3.5em;
+    position: relative;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.583);
+}
+
+.hover-text {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 0.05em var(--animation-color); /* Adjust stroke */
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-size: 1em; /* Use em for font size */
+}
+
+
+.button:hover .hover-text{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    filter: drop-shadow(0 0 5px var(--animation-color));
+}
+
+
+
+
 body {
     font-family: 'veteran typewriter', sans-serif;
     overflow-x: hidden; /* Prevent horizontal scrollbar */
