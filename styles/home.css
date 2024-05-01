@@ -16,21 +16,19 @@ body {
     margin: 0; /* Ensure no default margin */
 }
 
-img{
+img {
     padding-left: 1px;
     height: 20px;
-    width: vw;
-
+    width: auto; /* Changed from 'vw' to 'auto' */
 }
 
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2px;
     background-color: rgba(red, green, blue, 1);
     color: white;
-
 }
 
 .container {
@@ -38,8 +36,9 @@ img{
     height: 100vh; /* Full viewport height */
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Changed from 'row' to 'column' */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
     padding: 20px; /* Add padding */
     position: relative; /* Ensure position is relative */
     overflow: hidden; /* Hide overflowing content */
@@ -47,12 +46,10 @@ img{
 
 .content {
     width: 100%; /* Full width */
-    max-width: 800px; /* Limit maximum width of content */
-}
-
-.content nav {
-    display: flex;
-    align-items: center;
+    max-width: 1000px; /* Limit maximum width of content */
+    max-height: 2000px;
+    margin-top: 20px; /* Added margin at the top */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 .content h1 {
@@ -79,7 +76,7 @@ img{
 }
 
 .content a:hover {
-    scale: 1.15;
+    transform: scale(1.15); /* Corrected property */
     background-color: rgb(0, 153, 255);
     color: #000;
 }
@@ -89,13 +86,13 @@ img{
 }
 
 .background-clip {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    position: fixed; /* Changed from 'absolute' to 'fixed' */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     z-index: -1;
-    width: 100%; /* Ensure video covers entire container */
-    height: 100%; /* Ensure video covers entire container */
-    object-fit: cover; /* Ensure video covers entire container */
 }
 
 @media (max-width: 1200px) {

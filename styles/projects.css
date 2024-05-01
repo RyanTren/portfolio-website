@@ -67,6 +67,15 @@ body {
     object-fit: cover; /* Ensure video covers entire container */
 }
 
+.project-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 25px;
+    row-gap: 25px;
+    align-items: center;
+}
+
 @media (max-width: 1200px) {
     .container {
         padding: 10px; /* Adjust padding for smaller screens */
