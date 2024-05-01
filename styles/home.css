@@ -67,7 +67,8 @@ img{
     font-family: 'veteran typewriter', sans-serif;
     font-size: 1vw; /* Responsive font size */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
-    color: #fff;
+    background-color: white;
+    color: black;
     margin-bottom: 1vh; /* Responsive margin */
     padding: 20px; /* Responsive padding */
     border-radius: 40px;
@@ -78,7 +79,8 @@ img{
 }
 
 .content a:hover {
-    background-color: rgba(255, 255, 255, 0.85);
+    scale: 1.15;
+    background-color: rgb(0, 153, 255);
     color: #000;
 }
 
