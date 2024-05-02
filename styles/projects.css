@@ -69,11 +69,15 @@ body {
 
 .project-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
     grid-template-rows: auto;
-    column-gap: 25px;
-    row-gap: 25px;
     align-items: center;
+}
+
+.project-button{
+    min-width: 350px;
+    min-height: 200px;
 }
 
 @media (max-width: 1200px) {
