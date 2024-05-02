@@ -49,6 +49,7 @@
     border: none;
     width: 100%;
     filter: drop-shadow(0 0 5px var(--animation-color));
+    transition: 1.5s;
 }
 
 
