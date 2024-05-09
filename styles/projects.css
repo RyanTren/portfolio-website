@@ -49,9 +49,9 @@ body {
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
     background-color: rgba(0, 0, 0, 0.1);
-    display: flex;
+    display: relative;
     /* align-items: center; */
-    /* justify-content: center; */
+    justify-content: center;
     padding: 20px; /* Add padding */
     position: relative; /* Ensure position is relative */
     overflow: hidden; /* Hide overflowing content */
@@ -69,15 +69,17 @@ body {
 
 .project-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
     grid-template-rows: auto;
     align-items: center;
 }
 
 .project-button{
     min-width: 350px;
+    max-width: 450px;
     min-height: 200px;
+    max-height: 300px;
 }
 
 @media (max-width: 1200px) {
