@@ -140,6 +140,21 @@ img {
     z-index: -1;
 }
 
+.about-me-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: center;
+
+    padding: 20px;
+    margin: 1em;
+
+    font-size: 16px;
+    color: white;
+    text-shadow: 1px 1px 5px #000;
+    width: 25vw;
+}
+
 @media (max-width: 1200px) {
     .container {
         padding: 10px; /* Adjust padding for smaller screens */
