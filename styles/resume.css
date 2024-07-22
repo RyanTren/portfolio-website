@@ -21,6 +21,8 @@ body {
     width: 100vw; 
     height: 100vh; 
     position: relative; 
+
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .content {
