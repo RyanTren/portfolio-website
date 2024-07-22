@@ -69,7 +69,6 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 2px;
-    background-color: rgba(red, green, blue, 1);
     color: white;
 }
 
@@ -95,7 +94,7 @@ img {
 }
 
 .content h1 {
-    font-family: 'veteran typewriter';
+    font-family: 'veteran typewriter', 'Courier New', Courier, monospace;
     font-size: 3vw; /* Responsive font size */
     color: whitesmoke;
     text-shadow: 0 0 5px #000;
@@ -103,15 +102,15 @@ img {
 }
 
 .content a {
-    font-family: 'veteran typewriter', sans-serif;
+    font-family: 'veteran typewriter', 'Courier New', Courier, monospace;
     font-size: 1vw; /* Responsive font size */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
     background-color: white;
     color: black;
     margin-bottom: 1vh; /* Responsive margin */
     padding: 20px; /* Responsive padding */
-    border-radius: 40px;
-    transition: 0.3s;
+    border-radius: 15px;
+    transition: 0.35s;
     align-self: center;
     text-decoration: none;
     flex-direction: column;
@@ -140,8 +139,6 @@ img {
 
 .bio{
     display: block;
-
-
 }
 
 .portrait{
@@ -167,7 +164,6 @@ img {
     color: white;
     text-shadow: 1px 1px 5px #000;
     width: 95%;
-    
 }
 
 .socials{
