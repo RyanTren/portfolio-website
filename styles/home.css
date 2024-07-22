@@ -52,15 +52,6 @@
     transition: 1.5s;
 }
 
-.portrait{
-    width: 25%;
-    height: auto;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 15px;
-}
-
 body {
     font-family: 'veteran typewriter', sans-serif;
     overflow-x: hidden;
@@ -145,6 +136,21 @@ img {
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+.bio{
+    display: block;
+
+
+}
+
+.portrait{
+    width: 15%;
+    height: auto;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
 }
 
 .about-me-section{
