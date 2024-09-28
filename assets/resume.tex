@@ -54,8 +54,8 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -64,7 +64,7 @@
 % Custom commands
 \newcommand{\resumeItem}[1]{
   \item\small{
-    {#1 \vspace{-2pt}}
+    {#1 \vspace{-1pt}}
   }
 }
 
@@ -73,24 +73,24 @@
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-6pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-6pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-6pt}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-3pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
@@ -168,16 +168,6 @@
         \resumeItem{Scaled each web-app to 200+ users, iterated on user feedback to make continuous optimizations}
         \resumeItem{Coached by Amazon, Bloomberg, and Capital One engineers on Agile, CI/CD, Git, and micro-service patterns}
     \resumeItemListEnd
-
-      \resumeSubheading
-      {Artificial Intelligence Prompt Engineer}{May 2024 -- Present}
-      {Outlier}{Atlanta, GA}
-      \resumeItemListStart
-        \resumeItem{Enhanced AI coding capabilities by analyzing and improving AI-generated code in Java, Python, JavaScript/TypeScript, and SQL, leading to a 20\% increase in model accuracy.}
-        \resumeItem{Analyzed and refined peer code submissions across Java, C++, and Python, ensuring best practices and increasing code efficiency by 25\%}
-        \resumeItem{Developed 50+ original coding solutions and 100+ robust test cases in multiple languages, improving the LLM's coding proficiency by 30\%.}
-    \resumeItemListEnd
-
   \resumeSubHeadingListEnd
 
 
@@ -194,15 +184,13 @@
       \resumeProjectHeading
           {\textbf{React Music Player} $|$ \emph{React, JavaScript/TypeScript, Spotify API, GIT}}{May 2024 -- June 2024}
           \resumeItemListStart
-            \resumeItem{Designed and Implemented a music player web app using JavaScript, TypeScript, and React, resulting in a 30\% increase in user engagement.}
-            \resumeItem{Integrated Spotify API to curate playlists, enhancing user satisfaction by 40\%.}
+            \resumeItem{Designed and Implemented a music player web app using JavaScript, TypeScript, and React}
             \resumeItem{Implemented comprehensive music playback functionalities (play, pause, skip, shuffle, volume control), enhancing user interaction by 30\% and reducing user-reported bugs by 40\%, demonstrating proficiency in front-end development and collaboration skills.}
           \resumeItemListEnd
         \resumeProjectHeading
           {\textbf{Automated Restaurant POS Application} $|$ \emph{Java, Docker, mySQL, GIT}}{January 2024 -- May 2024}
           \resumeItemListStart
             \resumeItem{Created a POS system using Java/JavaFX for GUI and Docker/MySQL for the database, improving operational efficiency by 35\%.}
-            \resumeItem{Streamlined staff coordination and trend analysis, increasing revenue by 20\% through optimized decision-making.}
             \resumeItem{Delivered real-time insights to management through automated data collection and analysis, boosting revenue optimization by 25\% and improving functional efficiency by 30\%.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
