@@ -4,27 +4,13 @@ import Card from '../components/Card.astro';
 import '@/styles/globals.css'
 ---
 
-<Layout title="ryan's homepage">
+<Layout title="ryan's email">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Ryan's Website</span></h1>
-		
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/resume"
-				title="Ryan's Resume"
-				body="Here's my resume!"
-			/>
-			<Card
-				href="/projects"
-				title="Ryan's Projects"
-				body="All of my projects over the years"
-			/>
-			<Card
-				href="/contact"
-				title="Ryan's Contact"
-				body="Reach out to me here!"
-			/>
-		</ul>
+		<h1>Here is <span class="text-gradient">Ryan's Professional Email</span></h1>
+        <div>
+		    <h3>concepting@protonmail.com</h3>
+        </div>
+        <p>contact me here for any work related inquiries</p>
 	</main>
 </Layout>
 
@@ -51,6 +37,24 @@ import '@/styles/globals.css'
 		-webkit-text-fill-color: transparent;
 		background-size: 400%;
 		background-position: 0%;
+	}
+	.instructions {
+		margin-bottom: 2rem;
+		border: 1px solid rgba(var(--accent-light), 25%);
+		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+		padding: 1.5rem;
+		border-radius: 8px;
+	}
+	.instructions code {
+		font-size: 0.8em;
+		font-weight: bold;
+		background: rgba(var(--accent-light), 12%);
+		color: rgb(var(--accent-light));
+		border-radius: 4px;
+		padding: 0.3em 0.4em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent-light));
 	}
 	.link-card-grid {
 		display: grid;
