@@ -2,10 +2,35 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import '@/styles/globals.css'
+import { Button } from '@/components/ui/button'
+import { ModeToggle } from '@/components/ModeToggle';
 ---
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+ 
+	if (typeof localStorage !== 'undefined') {
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>
 
 <Layout title="ryan's contact info">
 	<main>
+		<div className="bg-zinc-950 dark:bg-white p-4" />
+		<ModeToggle client:load />
+		<Button variant="outline">
+			<a href="/">Back</a>
+		</Button>
 		<h2>Welcome to <span class="text-gradient">Ryan's Contact Information</span></h2>
 		
 		<ul role="list" class="link-card-grid">
@@ -22,35 +47,3 @@ import '@/styles/globals.css'
 		</ul>
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
