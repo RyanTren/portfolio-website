@@ -8,7 +8,8 @@ import { Theme } from '@radix-ui/themes';
 
 import AnimatedPinCard from "@/components/3d-pin";
 import { NavBar } from "@/components/NavBar";
-import { DotBackgroundDemo } from "@/components/background-dots";
+import { GridBackgroundDemo } from "@/components/grid-background";
+import { GridBackgroundDemo2 } from "@/components/grid";
 
 import { Image } from 'astro:assets';
 
@@ -36,9 +37,25 @@ import { Image } from 'astro:assets';
 <Theme>
 	<Layout title="ryan's homepage" className="bg-zinc-950 dark:bg-white p-4">
 		<main>
-			<NavBar client:load/>
-			<DotBackgroundDemo client:load/>
-			<body className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+			<head className="z-999"><NavBar client:load/></head>
+			
+			
+			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+				<GridBackgroundDemo client:load/>
+
+				<GridBackgroundDemo2 client:load/>
+				
+				<p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8"> 
+					//make this animated or something with logos/icons// created with <span className="text-gradient">astro, typescript, and supabase</span>
+				</p>
+
+				//add an about me here
+
+
+				// add some photos here
+
+
+				//replace these cards with something animated
 				<ul role="list" class="link-card-grid">
 					<Card
 						href="/resume"

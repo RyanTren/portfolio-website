@@ -13,8 +13,8 @@ export default function AnimatedPinCard() {
         href="https://linkedin.com/in/ryantren"
         
       >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold  text-base text-slate-100 text-black dark:text-white">
+        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem] ">
+          <h3 className="max-w-xs !pb-2 !m-0 font-bold  text-base  text-black dark:text-white">
             Contact Me
           </h3>
           <div className="text-base !m-0 !p-0 font-normal">

@@ -22,11 +22,11 @@ export function NavBar() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>open me</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className="row-span-3 flex flex-col gap-1">
+                                <ul className="z-999 row-span-3 flex flex-col gap-1">
                                     <NavigationMenuLink asChild>
                                         <a
                                             style={{ width: "16rem" }}
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-70 transition-all duration-300"
+                                            className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-70 transition-all duration-300"
                                             href="/"
                                         >
                                             <div className="mb-2 mt-4 text-lg font-medium">
@@ -40,7 +40,7 @@ export function NavBar() {
 
                                     <NavigationMenuLink asChild>
                                         <a
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
+                                            className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
                                             href="/resume"
                                         >
                                             <div className="mb-2 mt-4 text-lg font-medium">
@@ -54,7 +54,7 @@ export function NavBar() {
 
                                     <NavigationMenuLink asChild>
                                         <a
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
+                                            className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
                                             href="/projects"
                                         >
                                             <div className="mb-2 mt-4 text-lg font-medium">
@@ -68,7 +68,7 @@ export function NavBar() {
 
                                     <NavigationMenuLink asChild>
                                         <a
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
+                                            className="z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
                                             href="/contact"
                                         >
                                             <div className="mb-2 mt-4 text-lg font-medium">
