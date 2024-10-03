@@ -6,8 +6,9 @@ import '@/styles/globals.css'
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 
-import { ModeToggle } from '@/components/ModeToggle';
 import AnimatedPinCard from "@/components/3d-pin";
+import { NavBar } from "@/components/NavBar";
+import { DotBackgroundDemo } from "@/components/background-dots";
 
 import { Image } from 'astro:assets';
 
@@ -35,14 +36,13 @@ import { Image } from 'astro:assets';
 <Theme>
 	<Layout title="ryan's homepage" className="bg-zinc-950 dark:bg-white p-4">
 		<main>
-			<ModeToggle client:load />
+			<NavBar client:load />
 
+			<DotBackgroundDemo client:load/>
 			<div className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
 		
 
 			<body>
-				<h1 className="text-white dark:text-black">Welcome to <span class="text-gradient">Ryan's Website</span></h1>
-
 				<ul role="list" class="link-card-grid">
 					<Card
 						href="/resume"

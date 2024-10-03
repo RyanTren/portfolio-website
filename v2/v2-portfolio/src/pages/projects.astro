@@ -5,8 +5,8 @@ import '@/styles/globals.css'
 import '@radix-ui/themes/styles.css';
 import { Theme, Grid, Box } from '@radix-ui/themes';
 
+import { NavBar } from '@/components/NavBar';
 import { Button} from '@/components/ui/button';
-import { ModeToggle } from '@/components/ModeToggle';
 ---
 <script is:inline>
 	const getThemePreference = () => {
@@ -30,9 +30,11 @@ import { ModeToggle } from '@/components/ModeToggle';
 
 <Theme>
 	<Layout title="ryan's projects">
+		
 		<main>
+			<NavBar client:load />
+
 			<div className="bg-zinc-950 dark:bg-white p-4" >
-			<ModeToggle client:load />
 			<Button variant="outline">
 				<a href="/">Back</a>
 			</Button>
