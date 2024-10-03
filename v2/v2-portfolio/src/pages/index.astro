@@ -36,13 +36,9 @@ import { Image } from 'astro:assets';
 <Theme>
 	<Layout title="ryan's homepage" className="bg-zinc-950 dark:bg-white p-4">
 		<main>
-			<NavBar client:load />
-
+			<NavBar client:load/>
 			<DotBackgroundDemo client:load/>
-			<div className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-		
-
-			<body>
+			<body className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
 				<ul role="list" class="link-card-grid">
 					<Card
 						href="/resume"
@@ -57,7 +53,7 @@ import { Image } from 'astro:assets';
 				</ul>
 
 				<ul role="list" class="link-card-grid" >
-					<AnimatedPinCard  client:load />
+					<AnimatedPinCard  client:idle />
 				</ul>
 			</body>
 		</main>
