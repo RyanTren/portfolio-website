@@ -15,7 +15,7 @@ import {
 export function NavBar(){
     return (
         <div className="flex justify-between items-center space-x-4 py-4 ">
-            <div className="text-2xl font-bold "><ModeToggle /></div>
+            <div className="text-2xl font-thin"><ModeToggle /></div>
             <div className="flex space-x-4">
                 {/* <a href="/">Home</a>
                 <a href="/resume">Resume</a>
@@ -25,9 +25,9 @@ export function NavBar(){
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                        <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+                        <NavigationMenuTrigger></NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <NavigationMenuLink>Link</NavigationMenuLink>
+                            <NavigationMenuLink>Home</NavigationMenuLink>
                         </NavigationMenuContent>
                         </NavigationMenuItem>
                     </NavigationMenuList>
