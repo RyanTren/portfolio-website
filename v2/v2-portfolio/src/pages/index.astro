@@ -8,10 +8,13 @@ import { Theme } from '@radix-ui/themes';
 
 import AnimatedPinCard from "@/components/3d-pin";
 import { NavBar } from "@/components/NavBar";
-import { GridBackgroundDemo } from "@/components/grid-background";
-import { GridBackgroundDemo2 } from "@/components/grid";
+import { HeroComponent } from "@/components/hero";
+import { SVGMaskEffect } from "@/components/mask";
 
 import { Image } from 'astro:assets';
+
+
+import { ViewTransitions } from 'astro:transitions';
 
 ---
 <script is:inline>
@@ -41,15 +44,13 @@ import { Image } from 'astro:assets';
 			
 			
 			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-				<GridBackgroundDemo client:load/>
+				<div transition:name="hero">
+					<HeroComponent client:load/>
+				</div>
 
-				<GridBackgroundDemo2 client:load/>
-				
-				<p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8"> 
-					//make this animated or something with logos/icons// created with <span className="text-gradient">astro, typescript, and supabase</span>
-				</p>
-
-				//add an about me here
+				<div>
+					<SVGMaskEffect client:load/>
+				</div>
 
 
 				// add some photos here
