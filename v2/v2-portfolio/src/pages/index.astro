@@ -40,12 +40,12 @@ import { ViewTransitions } from 'astro:transitions';
 <Theme>
 	<Layout title="ryan's homepage" className="bg-zinc-950 dark:bg-white p-4">
 		<main>
-			<head className="z-999"><NavBar client:load/></head>
+			<head className="z-999"><NavBar client:idle/></head>
 			
 			
 			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
 				<div transition:name="hero">
-					<HeroComponent client:load/>
+					<HeroComponent client:idle/>
 				</div>
 
 				<div>
@@ -71,7 +71,7 @@ import { ViewTransitions } from 'astro:transitions';
 				</ul>
 
 				<ul role="list" class="link-card-grid" >
-					<AnimatedPinCard  client:idle />
+					<AnimatedPinCard  client:load />
 				</ul>
 			</body>
 		</main>
