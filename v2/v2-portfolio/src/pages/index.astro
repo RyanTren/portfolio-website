@@ -7,6 +7,7 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 
 import AnimatedPinCard from "@/components/3d-pin";
+import { MacbookScrollDemo } from "@/components/macbook-feature";
 import { NavBar } from "@/components/NavBar";
 import { HeroComponent } from "@/components/hero";
 import { SVGMaskEffect } from "@/components/mask";
@@ -49,13 +50,11 @@ import { ViewTransitions } from 'astro:transitions';
 				</div>
 
 				<div>
-					<SVGMaskEffect client:load/>
+					<SVGMaskEffect client:load/>				
+					<MacbookScrollDemo client:load/>
 				</div>
 
-
 				// add some photos here
-
-
 
 				//replace these cards with something animated
 				<ul role="list" class="link-card-grid">
