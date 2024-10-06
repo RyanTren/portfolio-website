@@ -13,6 +13,7 @@ V2 will contain a complete redesign of my portfolio website using Astro, Typescr
 
 ### animations?
 * [three.js](https://threejs.org/)
+* idk
 
 
 ### content?
