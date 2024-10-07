@@ -1,6 +1,5 @@
 import React from "react";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
-import { Image } from 'astro:assets';
 
 export function MacbookScrollDemo() {
   return (
@@ -11,7 +10,7 @@ export function MacbookScrollDemo() {
             this is my tech stack{" "}
           </span>
         }
-        src={`/noise.webp`}
+        src={`/macbook-bg.png`}
         showGradient={false}
       />
     </div>
