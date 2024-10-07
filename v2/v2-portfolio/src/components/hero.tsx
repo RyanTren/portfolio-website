@@ -1,5 +1,7 @@
 import React from "react";
 import '@/styles/globals.css';
+import { Image } from 'astro:assets';
+
 import astroLogo from '/astro-logo.png?url'; // Importing the image files
 import typescriptLogo from '/typescript-logo.png?url';
 import tailwindLogo from '/tailwindcss-logo.png?url';
@@ -15,17 +17,17 @@ export function HeroComponent() {
 
       <div className="image-gallery flex items-center justify-center">
         <span className="text-neutral-700 dark:text-neutral-400">built with</span>
-        <img
+        <Image
           src={astroLogo}
           alt="Astro logo"
           className="w-6 h-6 mx-2 filter dark:invert"
         />
-        <img
+        <Image
           src={typescriptLogo}
           alt="TypeScript"
           className="w-6 h-6 mx-2 filter"
         />
-        <img
+        <Image
           src={tailwindLogo}
           alt="TailwindCSS"
           className="w-6 h-6 mx-2 filter"

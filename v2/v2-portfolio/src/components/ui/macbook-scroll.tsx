@@ -166,7 +166,7 @@ export const Lid = ({
       >
         <div className="absolute inset-0 bg-[#272729] rounded-lg" />
         <img
-          src={src as string}
+          src={src}
           alt="aceternity logo"
           // layout="fill"
           // objectFit="cover"
