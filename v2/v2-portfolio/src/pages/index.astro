@@ -46,11 +46,11 @@ import { ViewTransitions } from 'astro:transitions';
 			
 			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
 				<div transition:name="hero">
-					<HeroComponent client:idle/>
+					<HeroComponent client:idle={{timeout: 350}}/>
 				</div>
 
 				<div>
-					<SVGMaskEffect client:load/>				
+					<SVGMaskEffect client:visible/>				
 					<MacbookScrollDemo client:load/>
 				</div>
 
@@ -71,7 +71,7 @@ import { ViewTransitions } from 'astro:transitions';
 				</ul>
 
 				<ul role="list" class="link-card-grid" >
-					<AnimatedPinCard  client:load />
+					<AnimatedPinCard  client:visible />
 				</ul>
 			</body>
 		</main>
