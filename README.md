@@ -16,6 +16,9 @@ V2 will contain a complete redesign of my portfolio website using Astro, Typescr
 * idk
 
 
+eeeee
+
+
 ### content?
 * about me
 * resume
