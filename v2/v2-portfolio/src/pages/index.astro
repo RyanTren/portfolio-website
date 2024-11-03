@@ -14,17 +14,15 @@ import { SVGMaskEffect } from "@/components/mask";
 import { LayoutGrid } from "@/components/ui/layout-grid";
 
 import { Image } from 'astro:assets';
-
-
 import { ViewTransitions } from 'astro:transitions';
 
 
 const cards = [
-	{ id: 1, content: "Card 1", className: "class-1", thumbnail: "/path/to/image1.jpg" },
-	{ id: 2, content: "Card 2", className: "class-2", thumbnail: "/path/to/image2.jpg" },
-	{ id: 3, content: "Card 3", className: "class-3", thumbnail: "/path/to/image3.jpg" },
-	{ id: 4, content: "Card 4", className: "class-4", thumbnail: "/path/to/image4.jpg" },
-	{ id: 5, content: "Card 5", className: "class-5", thumbnail: "/path/to/image5.jpg" },
+	{ id: 1, content: "Card 1", className: "class-1", thumbnail: "/astro-logo.png" },
+	{ id: 2, content: "Card 2", className: "class-2", thumbnail: "/astro-logo.png" },
+	{ id: 3, content: "Card 3", className: "class-3", thumbnail: "/astro-logo.png" },
+	{ id: 4, content: "Card 4", className: "class-4", thumbnail: "/astro-logo.png" },
+	{ id: 5, content: "Card 5", className: "class-5", thumbnail: "/astro-logo.png" },
 ];
 
 ---
@@ -65,7 +63,7 @@ const cards = [
 				</div>
 
 				<div>
-					<LayoutGrid  cards={cards} client:visible/>
+					<LayoutGrid  cards={cards} client:load/>
 				</div>
 
 				<div>

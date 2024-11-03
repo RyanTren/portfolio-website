@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 // import Image from "next/image";
-import { Image } from 'astro:assets';
+// import { Image } from 'astro:assets';
 
 type Card = {
   id: number;
