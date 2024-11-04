@@ -147,9 +147,9 @@ export const Lid = ({
           }}
           className="absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
         >
-          <span className="text-white">
+          {/* <span className="text-white">
             <p>pretty coool transition huh?</p>
-          </span>
+          </span> */}
         </div>
       </div>
       <motion.div
