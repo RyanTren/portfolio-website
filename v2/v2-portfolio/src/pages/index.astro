@@ -11,19 +11,12 @@ import { MacbookScrollDemo } from "@/components/macbook-feature";
 import { NavBar } from "@/components/NavBar";
 import { HeroComponent } from "@/components/hero";
 import { SVGMaskEffect } from "@/components/mask";
-import { LayoutGrid } from "@/components/ui/layout-grid";
+import { LayoutGridDemo } from "@/components/LayoutGrid";
 
 import { Image } from 'astro:assets';
 import { ViewTransitions } from 'astro:transitions';
 
 
-const cards = [
-	{ id: 1, content: "Card 1", className: "class-1", thumbnail: "/astro-logo.png" },
-	{ id: 2, content: "Card 2", className: "class-2", thumbnail: "/astro-logo.png" },
-	{ id: 3, content: "Card 3", className: "class-3", thumbnail: "/astro-logo.png" },
-	{ id: 4, content: "Card 4", className: "class-4", thumbnail: "/astro-logo.png" },
-	{ id: 5, content: "Card 5", className: "class-5", thumbnail: "/astro-logo.png" },
-];
 
 ---
 <script is:inline>
@@ -51,7 +44,6 @@ const cards = [
 		<main>
 			<head className="z-999"><NavBar client:idle/></head>
 			
-			
 			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
 				<div transition:name="hero">
 					<HeroComponent client:idle={{timeout: 350}}/>
@@ -63,7 +55,7 @@ const cards = [
 				</div>
 
 				<div>
-					<LayoutGrid  cards={cards} client:load/>
+					<LayoutGridDemo  cards={cards} client:load/>
 				</div>
 
 				<div>
