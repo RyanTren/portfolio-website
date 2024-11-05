@@ -3,10 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 import { Button } from "@/components/ui/button"
+import { Form } from "@/components/form"
 import '@/styles/globals.css'
 import { NavBar } from '@/components/NavBar';
+import AnimatedPinCard from "@/components/3d-pin";
 import TimelineDemo from "@/components/timeline";
 import { Image } from 'astro:assets';
+
+import { supabase } from '../db/supabase';
+const { data, error } = await supabase.from("todos").select('*');
 ---
 <script is:inline>
 	const getThemePreference = () => {
@@ -36,15 +41,13 @@ import { Image } from 'astro:assets';
 		<NavBar client:load />
 		</div>
 
-        <div>
-		<h1>Don't have <span class="text-gradient">LinkedIn</span>?</h1>
-        <p className="flex center">No worries, you can fill out this form and i'll check it out when I'm available!</p>
-        </div>
-		<body>
-
-		
-
-		</body>
+        <body className="flex flex-col items-center gap-4">
+            <h1>Contact <span class="text-gradient">Me</span>?</h1>
+            <Form client:load />
+			<ul role="list" class="link-card-grid" >
+				<AnimatedPinCard  client:load />
+			</ul>
+        </body>
 	</main>
 </Layout>
 
