@@ -57,15 +57,12 @@ const cards = [
 				</div>
 
 				<div>
-					<SVGMaskEffect client:visible/>				
+					<SVGMaskEffect client:visible/>	
+					<LayoutGridDemo  cards={cards} client:load/>			
 					<MacbookScrollDemo client:load/>
 				</div>
 
-				<div>
-					<LayoutGridDemo  cards={cards} client:load/>
-				</div>
-
-				<div>
+				<div class="mt-6">
 				<ul role="list" class="link-card-grid">
 					<Card
 						href="/resume"
