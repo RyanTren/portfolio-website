@@ -49,11 +49,11 @@ const cards = [
 <Theme>
 	<Layout title="ryan's homepage" className="bg-zinc-950 dark:bg-white p-4">
 		<main>
-			<head className="z-999"><NavBar client:idle/></head>
+			<head className="fixed top-0 left-0 w-full z-[1000] px-8 py-4 backdrop-blur-md bg-white/10 text-white shadow-lg"><NavBar client:idle/></head>
 			
-			<body className="z-0 h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-				<div transition:name="hero">
-					<HeroComponent client:idle={{timeout: 350}}/>
+			<body className="z-0 h-96 relative  overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+				<div className="z-0 relative bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-5xl md:text-6xl lg:text-7xl font-sans py-1 md:py-3 relative z-20 font-bold tracking-tight">
+					<HeroComponent client:load/>
 				</div>
 
 				<div>
@@ -78,9 +78,10 @@ const cards = [
 				</div>
 
 				<div>
-				<ul role="list" class="link-card-grid" >
-					<AnimatedPinCard  client:visible />
-				</ul>
+					<ul role="list" class="link-card-grid" >
+						<AnimatedPinCard  client:load />
+					</ul>
+					
 				</div>
 			</body>
 		</main>

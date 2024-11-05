@@ -7,6 +7,8 @@ import { Theme, Grid, Box } from '@radix-ui/themes';
 
 import { NavBar } from '@/components/NavBar';
 import { Button} from '@/components/ui/button';
+import { BentoGridSecondDemo } from '@/components/bento';
+import GitHubAnimatedPinCard from "@/components/3d-pin-github";
 ---
 <script is:inline>
 	const getThemePreference = () => {
@@ -33,65 +35,16 @@ import { Button} from '@/components/ui/button';
 		
 		<main>
 			<NavBar client:load />
-
-			<div className="bg-zinc-950 dark:bg-white p-4" >
-			<Button variant="outline">
-				<a href="/">Back</a>
-			</Button>
-			<h2>Welcome to <span class="text-gradient">Ryan's projects</span></h2>
-			<div/>
 			
-			<Grid>
-			<ul role="list" class="link-card-grid">
-				<Card
-					href="https://github.com/RyanTren/mindjourney"
-					title="mindjourney"
-					body="Web application designed to offer AI-driven mental health support and resources. It leverages modern web development technologies and cloud services to provide users with personalized experiences."
-				/>
-				<Card
-					href="https://github.com/RyanTren/AI-Flashcards-Stripe"
-					title="flasher.io"
-					body="A flashcard SaaS with Next.js, Clerk, Firebase, OpenAI, and Stripe."
-				/>
-				<Card
-					href="https://github.com/RyanTren/AI-Customer-Support"
-					title="AI Customer Support"
-					body="an AI-powered customer support chatbot using Next.js and the OpenAI API."
-				/>	
-				<Card
-					href="https://github.com/RyanTren/serenity.com"
-					title="Serenity"
-					body="A music player web application that allows users to create and manage playlists containing their friends' favorite songs. The application will utilize JavaScript and TypeScript for frontend development, with ReactJS/TS for building the user interface. One of my first ReactJS projects!"
-				/>	
-				<Card
-					href="https://github.com/RyanTren/SWE3313-Automation-Project"
-					title="Automation of J's Restaurant"
-					body="This project develops a computerized system to help restaurant personnel coordinate their activities and improve their services, and for the management to track business growth and create future plans."
-				/>
-				<Card
-					href="https://github.com/RyanTren/IOS101-Motional-Project"
-					title="Motional"
-					body="A Swift(iOS) app that seamlessly combines guided mindfulness meditation with easy-to-follow at-home workout routines. Users have the flexibility to tailor their sessions based on duration, difficulty level, and specific focus areas, fostering a comprehensive approach to mental and physical well-being"
-				/>			
-			</ul>
-			</Grid>
+			<h1>Welcome to <span class="text-gradient">Ryan's Projects</span></h1>
 
+			<BentoGridSecondDemo client:load/>
 
-			<Box
-			width="75vw" 
-			height="auto" 
-			p="16px" 
-			display={{ base: 'block', sm: 'inline-block' }} 
-			bg="lightgray" 
-			borderradius="8px" 
-			boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-			>
-				<Card
-					href="https://github.com/ryantren"
-					title="my github"
-					body="checkout my other work or give me a follow. ❤️"
-				/>
-			</Box>
+			<div>
+				<ul role="list" class="link-card-grid" >
+					<GitHubAnimatedPinCard  client:visible />
+				</ul>
+			</div>
 		</main>
 	</Layout>
 </Theme>

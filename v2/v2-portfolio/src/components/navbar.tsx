@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ModeToggle } from '@/components/ModeToggle';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -30,18 +31,18 @@ export function NavBar() {
   };
 
   return (
-    <div className="relative z-999 flex justify-between items-center space-x-4 py-4">
+    <div className="sticky top-0 z-50 flex justify-between items-center space-x-4 py-4">
       <div className="flex space-x-4">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>open me</NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className="z-999">
                 <ul className="z-999 row-span-3 flex flex-col gap-1">
                   <NavigationMenuLink asChild>
                     <a
                       style={{ width: "16rem" }}
-                      className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-70 transition-all duration-300"
+                      className="sticky z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-70 transition-all duration-300"
                       href="/"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
@@ -55,7 +56,7 @@ export function NavBar() {
 
                   <NavigationMenuLink asChild>
                     <a
-                      className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
+                      className="sticky z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
                       href="/resume"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
@@ -69,7 +70,7 @@ export function NavBar() {
 
                   <NavigationMenuLink asChild>
                     <a
-                      className="relative z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
+                      className="sticky z-999 flex h-full w-full select-none flex-col justify-end rounded-md bg-transparent hover:bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:w-64 transition-all duration-300"
                       href="/projects"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
@@ -101,14 +102,15 @@ export function NavBar() {
         </NavigationMenu>
       </div>
 
-      <div className="ml-auto text-2xl font-thin">
-        <button id="theme-toggle" onClick={handleToggleClick}>
+      <div className="sticky ml-auto text-2xl font-thin">
+        {/* <button id="theme-toggle" onClick={handleToggleClick}>
           {theme === 'dark' ? (
             <svg className="icon-moon lucide lucide-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
           ) : (
             <svg className="icon-sun lucide lucide-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           )}
-        </button>
+        </button> */}
+        <ModeToggle />
       </div>
     </div>
   );

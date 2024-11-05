@@ -33,20 +33,13 @@ import { Image } from 'astro:assets';
 <Layout title="ryan's resume">
 	<main>
 		<div className="bg-zinc-950 dark:bg-white p-4">
-		<NavBar client:load />
-
-		<Button variant="outline">
-			<a href="/">Back</a>
-		</Button>
+			<NavBar client:load />
 		</div>
 
 		<h1>Welcome to <span class="text-gradient">Ryan's Resume</span></h1>
 
 		<body>
-
-		
-
-		<iframe src="/RyanResume2024.pdf" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+			<iframe src="/RyanResume2024.pdf" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
 		</body>
 	</main>
 </Layout>
