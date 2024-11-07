@@ -1,15 +1,20 @@
-// form.tsx
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { supabase } from '@/db/supabase';
 
+interface FormData {
+  Email: string;
+  category: string;
+  Message: string;
+}
+
 export function Form() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormData>();
   const [data, setData] = useState("");
   const [error, setError] = useState("");
-  const [entries, setEntries] = useState<any[]>([]);
+  const [entries, setEntries] = useState<{ id: number; name: string }[]>([]);
 
-  const onSubmit = async (formData: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (formData) => {
     const { data, error } = await supabase
       .from('todos')
       .insert([formData]);
@@ -19,6 +24,7 @@ export function Form() {
     } else {
       setData(JSON.stringify(data));
       fetchEntries(); // Fetch entries after submission
+      alert("Your information has been submitted successfully!");
     }
   };
 
