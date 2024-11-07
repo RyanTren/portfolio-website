@@ -1,9 +1,9 @@
 # Ryan's Website
-[V1 click me](https://ryantren.github.io/portfolio-website/)
-[V2 WIP](http://workinprogress.com/)
+- [V1 click me](https://ryantren.github.io/portfolio-website/)
+- [V2 WIP](http://workinprogress.com/)
 
 ## What's in V2?
-V2 will contain a complete redesign of my portfolio website using Astro, Typescript, TailwindCSS, and other libraries that are listed below.
+V2 will contain a complete redesign of my portfolio website using Astro, Typescript, TailwindCSS, shadcn, radix, three.js, and supabase for the db.
 
 ### ??? libraries that idk what they do
 * [storyblock](https://github.com/storyblok/storyblok-astro)
