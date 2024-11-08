@@ -6,10 +6,10 @@ import '@/styles/globals.css';
 import astroLogo from '/astro-logo.png?url'; // Importing the image files
 import typescriptLogo from '/typescript-logo.png?url';
 import tailwindLogo from '/tailwindcss-logo.png?url';
-
+import supabaseLogo from '/supabase-logo.png?url';
 export function HeroComponent() {
   return (
-    <div className="relative h-50vh">
+    <div className="relative h-screen">
       <div className="dark:bg-transparent bg-transparent absolute inset-0 borderradius-24 overflow-hidden blur-1xl -z-10">
         <ShaderGradientComponent />
       </div>
@@ -34,6 +34,11 @@ export function HeroComponent() {
           <img
             src={tailwindLogo}
             alt="Tailwind CSS logo"
+            className="w-6 h-6 mx-2 filter"
+          />
+          <img
+            src={supabaseLogo}
+            alt="Supabase logo"
             className="w-6 h-6 mx-2 filter"
           />
         </div>

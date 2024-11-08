@@ -10,7 +10,7 @@ import AnimatedPinCard from "@/components/3d-pin";
 import TimelineDemo from "@/components/timeline";
 import { Image } from 'astro:assets';
 
-import { supabase } from '../db/supabase';
+import { supabase } from '@/db/supabase';
 const { data, error } = await supabase.from("todos").select('*');
 ---
 <script is:inline>
@@ -31,9 +31,6 @@ const { data, error } = await supabase.from("todos").select('*');
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
 </script>
-
-
-
 
 <Layout title="ryan's contact">
 	<main>

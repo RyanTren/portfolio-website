@@ -15,21 +15,55 @@ export function Form() {
   const [entries, setEntries] = useState<{ id: number; name: string }[]>([]);
 
   const onSubmit: SubmitHandler<FormData> = async (formData) => {
-    const { data, error } = await supabase
-      .from('todos')
-      .insert([formData]);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setData(JSON.stringify(data));
-      fetchEntries(); // Fetch entries after submission
-      alert("Your information has been submitted successfully!");
+    try {
+      // Check if there's already a submission in the past week for the given email
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  
+      const { data: existingEntries, error: fetchError } = await supabase
+        .from('ContactInformation')
+        .select('*')
+        .eq('Email', formData.Email)
+        .gte('created_at', oneWeekAgo.toISOString());
+  
+      if (fetchError) {
+        setError(fetchError.message);
+        console.error("Error checking existing submissions:", fetchError.message);
+        alert(`Error: ${fetchError.message}`);
+        return;
+      }
+  
+      // If there's an existing submission, show an alert
+      if (existingEntries && existingEntries.length > 0) {
+        alert("You have already submitted this form within the last week. Please try again later.");
+        return;
+      }
+  
+      // Proceed with the form submission and request the inserted data
+      const { data, error } = await supabase
+        .from('ContactInformation')
+        .insert([{ Email: formData.Email, category: formData.category, Message: formData.Message }]);
+  
+      if (error) {
+        setError(error.message);
+        console.error("Submission error:", error.message);
+        alert(`Submission failed: ${error.message}`);
+      } else {
+        setData("Submitted successfully!"); // Set a custom success message
+        console.log("Submission successful!");
+        alert("Your information has been submitted successfully!");
+        fetchEntries();
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      setError("Unexpected error occurred.");
+      alert(`Unexpected error: ${err}`);
     }
   };
-
+  
+  
   const fetchEntries = async () => {
-    const { data, error } = await supabase.from("todos").select('*');
+    const { data, error } = await supabase.from("ContactInformation").select('*');
     if (error) {
       setError(error.message);
     } else {
@@ -75,7 +109,7 @@ export function Form() {
           />
         </div>
         {error && <p className="text-sm text-red-500">{error}</p>}
-        <p className="text-sm text-gray-500 dark:text-gray-400">{data}</p>
+        {data && <p className="text-sm text-green-500 dark:text-green-400">{data}</p>}
         <div>
           <input
             type="submit"
