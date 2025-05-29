@@ -1,9 +1,10 @@
 # Ryan's Website
 - [**V1** | Deployed Thru Github Pages](https://ryantren.github.io/portfolio-website/)
-- [**V2** | WIP](http://workinprogress.com/)
+- [**V2** | -WIP- SCRAPPED]
+- [**V3** | Next.js, Deployed with Vercel ] 
 
-## What's in V2?
-V2 will contain a complete redesign of my portfolio website using Astro, Typescript, TailwindCSS, and other libraries that are listed below.
+## What's in V3?
+V3 will contain a complete redesign of my portfolio website using Next.js, Typescript, TailwindCSS, and other libraries that are listed below.
 
 ### libraries?
 * [shadcn](https://ui.shadcn.com/docs/installation/astro)
