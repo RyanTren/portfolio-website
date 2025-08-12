@@ -36,7 +36,6 @@ import {
 export default function Portfolio() {
   const [currentRole, setCurrentRole] = useState(0)
   const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedCategory, setSelectedCategory] = useState("all")
   const roles = ["Software Engineer", "AI Researcher", "Full-Stack Developer", "Tech Fellow"]
 
   const galleryImages = [
@@ -129,12 +128,7 @@ export default function Portfolio() {
     },
   ]
 
-  const categories = [
-    { id: "all", label: "All Projects", icon: Code2 },
-    { id: "ai", label: "AI & ML", icon: Brain },
-    { id: "fullstack", label: "Full-Stack", icon: Zap },
-    { id: "research", label: "Research", icon: Users },
-  ]
+  // Project categories can be reintroduced if/when filtering UI is added
 
   const experiences = [
     {
@@ -232,22 +226,21 @@ export default function Portfolio() {
     clubs: ["KSU AI Club", "KSU Electric Vehicle Team", "KSU Vietnamese Student Association"],
   }
 
-  const filteredProjects =
-    selectedCategory === "all" ? projects : projects.filter((project) => project.category === selectedCategory)
+  // const filteredProjects = selectedCategory === "all" ? projects : projects.filter((project) => project.category === selectedCategory)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length)
     }, 2000)
     return () => clearInterval(interval)
-  }, [])
+  }, [roles.length])
 
   useEffect(() => {
     const galleryInterval = setInterval(() => {
       setSelectedImage((prev) => (prev + 1) % galleryImages.length)
     }, 4000)
     return () => clearInterval(galleryInterval)
-  }, [])
+  }, [galleryImages.length])
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
@@ -275,7 +268,7 @@ export default function Portfolio() {
                 Available for Full-Time Opportunities
               </Badge>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                Hi, I'm{" "}
+                Hi, I&apos;m{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Ryan Tran
                 </span>
@@ -370,7 +363,7 @@ export default function Portfolio() {
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Code</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              While I love building software and exploring AI, there's more to my story. Here's a glimpse into who I am
+              While I love building software and exploring AI, there&apos;s more to my story. Here&apos;s a glimpse into who I am
               outside the world of algorithms and APIs.
             </p>
           </div>
@@ -427,7 +420,7 @@ export default function Portfolio() {
                   solutions that impact real people.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  At Kennesaw State University, I'm not just studying Computer Science—I'm actively shaping the tech
+                  At Kennesaw State University, I&apos;m not just studying Computer Science—I&apos;m actively shaping the tech
                   community through leadership in the AI Club, contributing to the Electric Vehicle Team, and
                   celebrating my Vietnamese heritage through the Vietnamese Student Association.
                 </p>
@@ -435,7 +428,7 @@ export default function Portfolio() {
 
               {/* Interests & Hobbies */}
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold">When I'm Not Coding</h3>
+                <h3 className="text-2xl font-bold">When I&apos;m Not Coding</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-0 flex items-center space-x-3">
@@ -530,7 +523,7 @@ export default function Portfolio() {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From research labs to enterprise environments, here's how I've grown as a software engineer and AI
+              From research labs to enterprise environments, here&apos;s how I&apos;ve grown as a software engineer and AI
               researcher.
             </p>
           </div>
@@ -692,13 +685,13 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              Let's{" "}
+              Let&apos;s{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Connect
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm always excited to discuss new opportunities, collaborate on projects, or just chat about technology
+              I&apos;m always excited to discuss new opportunities, collaborate on projects, or just chat about technology
               and AI. Feel free to reach out!
             </p>
           </div>
@@ -813,7 +806,7 @@ export default function Portfolio() {
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="text-2xl">Send Me a Message</CardTitle>
                 <CardDescription>
-                  Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+                    Have a project in mind or want to discuss opportunities? I&apos;d love to hear from you!
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-0 pb-0">
@@ -841,10 +834,10 @@ export default function Portfolio() {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <Input id="subject" placeholder="Let's discuss a project opportunity" />
+                      <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                        Subject
+                      </label>
+                      <Input id="subject" placeholder="Let&apos;s discuss a project opportunity" />
                   </div>
 
                   <div>
