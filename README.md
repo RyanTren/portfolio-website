@@ -3,8 +3,8 @@
 - [**V2** | -WIP- SCRAPPED]
 - [**V3** | Next.js, Deployed with Vercel ] 
 
-## What's in V3?
-V3 will contain a complete redesign of my portfolio website using Next.js, Typescript, TailwindCSS, and other libraries that are listed below.
+## What's in V4?
+V4 is v0's build for my portfolio website :p
 
 ### libraries?
 * [shadcn](https://ui.shadcn.com/docs/installation/astro)
