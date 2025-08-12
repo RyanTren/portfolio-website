@@ -40,12 +40,12 @@ export default function Portfolio() {
   const roles = ["Software Engineer", "AI Researcher", "Full-Stack Developer", "Tech Fellow"]
 
   const galleryImages = [
-    { src: "/asian-male-computer-science-headshot.png", alt: "Professional headshot" },
-    { src: "/coding-student-workspace.png", alt: "Coding workspace" },
-    { src: "/vietnamese-student-association-ksu.png", alt: "VSA group photo" },
-    { src: "/university-ev-team.png", alt: "EV team project" },
-    { src: "/ksu-ai-club-meeting.png", alt: "AI club meeting" },
-    { src: "/student-coffee-study.png", alt: "Study session" },
+    { src: "/public/gallery_images/asian-male-computer-science-headshot.png", alt: "Professional headshot" },
+    { src: "/public/gallery_images/coding-student-workspace.png", alt: "Coding workspace" },
+    { src: "/public/gallery_images/vietnamese-student-association-ksu.png", alt: "VSA group photo" },
+    { src: "/public/gallery_images/university-ev-team.png", alt: "EV team project" },
+    { src: "/public/gallery_images/ksu-ai-club-meeting.png", alt: "AI club meeting" },
+    { src: "/public/gallery_images/student-coffee-study.png", alt: "Study session" },
   ]
 
   const projects = [

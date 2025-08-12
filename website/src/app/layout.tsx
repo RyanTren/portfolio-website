@@ -5,9 +5,9 @@ import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Ryan Tran - Software Engineer & AI Researcher",
+  title: "npm run: 'ryan's site'",
   description:
-    "Portfolio of Ryan Tran - Computer Science student at Kennesaw State University specializing in AI and full-stack development",
+    "Portfolio of Ryan Tran - CS + AI and Full-Stack Development",
   generator: "v0.dev",
 }
 
