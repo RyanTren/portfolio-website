@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ryan Tran — SWE + AI",
-  description: "Portfolio of Ryan Tran: projects, experience, and interests.",
+  title: "home = 'ryan welcomes you'",
+  description: "a website about me!",
 };
 
 export default function RootLayout({
