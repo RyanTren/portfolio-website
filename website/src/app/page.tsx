@@ -267,7 +267,7 @@ export default function Portfolio() {
               <Badge variant="outline" className="text-sm font-medium">
                 Available for Full-Time Opportunities
               </Badge>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight">
                 Hi, I&apos;m{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Ryan Tran
@@ -275,18 +275,19 @@ export default function Portfolio() {
               </h1>
             </div>
 
+            {/* potential replace this with a ui lib component for a smoother and nicer animation */}
             <div className="h-16 flex items-center justify-center">
               <p className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground">
-                Rising Senior &{" "}
-                <span className="font-semibold text-foreground transition-all duration-500 ease-in-out">
+                {" "}
+                <span className="font-semibold text-foreground transition-all duration-150 ease-in-out">
                   {roles[currentRole]}
                 </span>
               </p>
             </div>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Computer Science student at Kennesaw State University with a passion for building innovative AI solutions
-              and scalable web applications. Currently working as a Software Engineering Co-op at INPO.
+              Passionate about building innovative AI-solutions
+              through scalable web applications.
             </p>
 
             {/* CTA Buttons */}
@@ -415,14 +416,12 @@ export default function Portfolio() {
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold">My Journey</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Growing up in the Metro-Atlanta area, I discovered my passion for technology through curiosity and
-                  countless hours of tinkering. What started as wondering "how does this work?" evolved into building
-                  solutions that impact real people.
+                  Growing up in the Metro-Atlanta area, I discovered my passion for technology through curiosity, unlimited creativity, and 
+                  countless hours of tinkering. What started as wondering "how does this work?" evolved into building solutions that impact real people.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  At Kennesaw State University, I&apos;m not just studying Computer Science—I&apos;m actively shaping the tech
-                  community through leadership in the AI Club, contributing to the Electric Vehicle Team, and
-                  celebrating my Vietnamese heritage through the Vietnamese Student Association.
+                  At Kennesaw State University, I&apos;m not just studying Computer Science. I independently learn about AI
+                  (LLMs, RAG, NLP, MV, ML, etc.) and build projects to apply and grow my knowledge in Software Engineering.
                 </p>
               </div>
 
@@ -436,8 +435,8 @@ export default function Portfolio() {
                         <Heart className="h-5 w-5 text-red-600" />
                       </div>
                       <div>
-                        <p className="font-medium">Community</p>
-                        <p className="text-sm text-muted-foreground">VSA Leadership</p>
+                        <p className="font-medium">adventure</p>
+                        <p className="text-sm text-muted-foreground">travel, eating at new spots, etc.</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -448,8 +447,8 @@ export default function Portfolio() {
                         <Coffee className="h-5 w-5 text-amber-600" />
                       </div>
                       <div>
-                        <p className="font-medium">Coffee</p>
-                        <p className="text-sm text-muted-foreground">Fuel for coding</p>
+                        <p className="font-medium">sports</p>
+                        <p className="text-sm text-muted-foreground">almost everything :)</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -460,8 +459,8 @@ export default function Portfolio() {
                         <Gamepad2 className="h-5 w-5 text-green-600" />
                       </div>
                       <div>
-                        <p className="font-medium">Gaming</p>
-                        <p className="text-sm text-muted-foreground">Strategy & RPGs</p>
+                        <p className="font-medium">gaming</p>
+                        <p className="text-sm text-muted-foreground">fps & metaverse platform</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -472,8 +471,8 @@ export default function Portfolio() {
                         <Music className="h-5 w-5 text-purple-600" />
                       </div>
                       <div>
-                        <p className="font-medium">Music</p>
-                        <p className="text-sm text-muted-foreground">Lo-fi & Electronic</p>
+                        <p className="font-medium">music</p>
+                        <p className="text-sm text-muted-foreground">dream-pop & electroclash</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -486,7 +485,7 @@ export default function Portfolio() {
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>Mentored 50+ students and improved completion rates by 25%</span>
+                    <span>Swam for over 10 years competitively in Georgia</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
@@ -498,7 +497,7 @@ export default function Portfolio() {
                   </li>
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    <span>Passionate about sustainable tech through EV team involvement</span>
+                    <span>Love fashion and style, collecting pieces since 6th grade</span>
                   </li>
                 </ul>
               </div>
@@ -522,9 +521,8 @@ export default function Portfolio() {
                 Journey
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From research labs to enterprise environments, here&apos;s how I&apos;ve grown as a software engineer and AI
-              researcher.
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              From a teen in retail for the summer to corporate software engineer, here&apos;s my journey.
             </p>
           </div>
 
