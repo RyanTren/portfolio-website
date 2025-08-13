@@ -1,8 +1,8 @@
 # Ryan's Website
 - [**V1** | Deployed Thru Github Pages](https://ryantren.github.io/portfolio-website/)
 - [**V2** | -WIP- SCRAPPED]
-- [**V3** | Next.js, Deployed with Vercel ] 
-- [**V4** | Next.js, Deployed with Vercel]
+- [**V3** | Improved with V4 ] 
+- [**V4** | Next.js, Deployed with Vercel](https://portfolio-site-swart-xi.vercel.app/)
 
 ## What's in V4?
 V4 is v0's build for my portfolio website :p
@@ -185,4 +185,4 @@ Note: These reusable components are not currently composed in `page.tsx`; the pa
 
 
 ## ai tools to look into for future development
-v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), and cursor
+v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), claude code, and cursor
