@@ -39,12 +39,12 @@ export default function Portfolio() {
   const roles = ["Software Engineer", "AI Researcher", "Full-Stack Developer", "Tech Fellow"]
 
   const galleryImages = [
-    { src: "/public/gallery_images/asian-male-computer-science-headshot.png", alt: "Professional headshot" },
-    { src: "/public/gallery_images/coding-student-workspace.png", alt: "Coding workspace" },
-    { src: "/public/gallery_images/vietnamese-student-association-ksu.png", alt: "VSA group photo" },
-    { src: "/public/gallery_images/university-ev-team.png", alt: "EV team project" },
-    { src: "/public/gallery_images/ksu-ai-club-meeting.png", alt: "AI club meeting" },
-    { src: "/public/gallery_images/student-coffee-study.png", alt: "Study session" },
+    { src: "/gallery_images/aayats_3.jpg", alt: "aayats internship" },
+    { src: "/gallery_images/ny_1.jpg", alt: "soho" },
+    { src: "/gallery_images/aayats_1.jpg", alt: "aayats internship" },
+    { src: "/gallery_images/ny_2.jpg", alt: "soho" },
+    { src: "/gallery_images/aayats_2.jpg", alt: "aayats internship" },
+    { src: "/gallery_images/ny_3.jpg", alt: "soho" },
   ]
 
   const projects = [
@@ -375,7 +375,7 @@ export default function Portfolio() {
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20">
                   <img
-                    src={galleryImages[selectedImage].src || "/placeholder.svg"}
+                    src={galleryImages[selectedImage].src || "/next.svg"}
                     alt={galleryImages[selectedImage].alt}
                     className="w-full h-full object-cover transition-all duration-500"
                   />
@@ -405,7 +405,7 @@ export default function Portfolio() {
                     className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-full object-cover" />
+                    <img src={image.src || "/next.svg"} alt={image.alt} className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
