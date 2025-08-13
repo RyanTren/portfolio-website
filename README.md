@@ -1,7 +1,7 @@
 # Ryan's Website
 - [**V1** | Deployed Thru Github Pages](https://ryantren.github.io/portfolio-website/)
-- [**V2** | -WIP- SCRAPPED]
-- [**V3** | Improved with V4 ] 
+- [**V2** | -WIP- SCRAPPED](https://github.com/RyanTren/portfolio-website/tree/v2)
+- [**V3** | Improved with V4 ](https://github.com/RyanTren/portfolio-website/tree/v3)
 - [**V4** | Next.js, Deployed with Vercel](https://portfolio-site-swart-xi.vercel.app/)
 
 ## What's in V4?
