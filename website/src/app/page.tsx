@@ -1,5 +1,7 @@
 "use client"
 
+import { motion } from "framer-motion"
+import React from "react";
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -7,6 +9,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import MorphingText from "@/components/eldoraui/morphingtext"
+
+import { AuroraBackground } from "@/components/ui/aurora-background";
+
 import {
   Github,
   Linkedin,
@@ -29,7 +34,6 @@ import {
   Award,
   TrendingUp,
   ExternalLink,
-  Phone,
   Send,
   ArrowUp,
 } from "lucide-react"
@@ -37,7 +41,15 @@ import {
 export default function Portfolio() {
   const [currentRole, setCurrentRole] = useState(0)
   const [selectedImage, setSelectedImage] = useState(0)
-  const roles = ["Software Engineer", "Full-Stack Developer", "Tech Fellow", "Undergraduate AI Researcher"]
+  const roles = [
+    "Software Engineer Co-op @ INPO", 
+    "Full-Stack Developer", 
+    "Previous Tech Fellow @ CodePath", 
+    "Previous Software Engineering Fellow @ Headstarter", 
+    "Previous Prompt Engineer @ Contractor to Scale AI", 
+    "Undergraduate Student @ KSU", 
+    "Previous Undergraduate AI Researcher @ KSU"
+  ]
 
   const galleryImages = [
     { src: "/gallery_images/aayats_3.jpg", alt: "aayats internship" },
@@ -54,11 +66,11 @@ export default function Portfolio() {
       title: "AI Mental Health SaaS",
       description:
         "Launched an AI-powered mental health platform with personalized wellness solutions, secure payments, and authentication. Onboarded 100+ users with 10+ paid subscribers.",
-      image: "/ai-mental-health-dashboard.png",
-      category: "ai",
+      image: "/project_thumbnails/mindjourney.JPG",
+      category: "ai saas",
       technologies: ["Next.js", "JavaScript", "OpenAI", "Clerk", "Stripe", "Firebase"],
-      github: "#",
-      demo: "#",
+      github: "https://github.com/RyanTren/mindjourney",
+      demo: "https://mindjourney-indol.vercel.app/",
       featured: true,
       stats: { users: "100+", revenue: "$1K+", rating: "4.8/5" },
     },
@@ -67,21 +79,46 @@ export default function Portfolio() {
       title: "Custom CNN Pose Detection",
       description:
         "Built a convolutional neural network to detect 5 specific bodybuilding poses. Fine-tuned hyperparameters and architecture to boost accuracy from 30% to 65%+.",
-      image: "/cnn-pose-detection-bodybuilding.png",
-      category: "ai",
+      image: "/project_thumbnails/cnn-pose-detection-bodybuilding.png",
+      category: "ai/cv",
       technologies: ["Python", "TensorFlow", "Keras", "Matplotlib", "OpenCV"],
-      github: "#",
-      demo: "#",
+      github: "https://github.com/RyanTren/AI-CNN-Bodybuilding-Pose-Classifier",
+      demo: "https://github.com/RyanTren/AI-CNN-Bodybuilding-Pose-Classifier",
       featured: true,
       stats: { accuracy: "65%+", poses: "5", improvement: "35%" },
     },
     {
       id: 3,
+      title: "Headstarter AI Apps",
+      description:
+        "Built and deployed 5 AI web applications using React, Next.js, Firebase, and OpenAI API. Led 4 engineers and scaled each app to 200+ users with feedback integration.",
+      image: "/project_thumbnails/ai-web-applications.png",
+      category: "fullstack",
+      technologies: ["React", "Next.js", "Firebase", "OpenAI API", "Clerk", "Vercel"],
+      github: "#",
+      demo: "#",
+      featured: true,
+      stats: { apps: "5", users: "200+", team: "4 engineers" },
+    },
+    {
+      id: 4,
+      title: "KSU AI Club Website",
+      description:
+        "Build and Deployed a web-app for my universities AI club to display events, officers, sponsors, and AI blog from Alumni and current Undergraduate and Graduate Students",
+      image: "/project_thumbnails/ksuaiclub.JPG",
+      category: "web dev",
+      technologies: ["Next.js", "Typescript", "Tailwindcss", "Vercel"],
+      github: "https://github.com/RyanTren/KSU-AI-Club-Site",
+      demo: "https://www.ksuaiclub.com/",
+      featured: true,
+    },
+    {
+      id: 5,
       title: "Music AI Prediction Model",
       description:
         "Pioneered a data AI model for predicting musical attributes (genre, mood, instrumentation) from MP3 files using Librosa. Designed pipeline extracting 15+ audio features.",
-      image: "/music-ai-waveform.png",
-      category: "ai",
+      image: "/project_thumbnails/music-ai-waveform.png",
+      category: "ai/ml",
       technologies: ["Python", "Librosa", "Hugging Face", "Unsloth", "Machine Learning"],
       github: "#",
       demo: "#",
@@ -89,43 +126,17 @@ export default function Portfolio() {
       stats: { features: "15+", accuracy: "78%", files: "1000+" },
     },
     {
-      id: 4,
+      id: 6,
       title: "Mental Health NLP Pipeline",
       description:
         "Built an NLP pipeline using 7 techniques including sentiment analysis and NER to detect emotional patterns in 1,000+ mental health app reviews.",
-      image: "/nlp-sentiment-dashboard.png",
+      image: "/project_thumbnails/nlp-sentiment-dashboard.png",
       category: "research",
       technologies: ["Python", "NLP", "Sentiment Analysis", "Web Scraping", "Data Analysis"],
       github: "#",
       demo: "#",
       featured: false,
       stats: { reviews: "1000+", techniques: "7", accuracy: "85%" },
-    },
-    {
-      id: 5,
-      title: "Full-Stack Web Applications",
-      description:
-        "Developed and tested full-stack applications with C#, .NET, Angular, and TypeScript across 3 projects at INPO. Implemented dependency injection and REST APIs.",
-      image: "/enterprise-web-app-dashboard.png",
-      category: "fullstack",
-      technologies: ["C#", ".NET", "Angular", "TypeScript", "SQL Server", "Azure"],
-      github: "#",
-      demo: "#",
-      featured: false,
-      stats: { projects: "3", tests: "100+", uptime: "99.9%" },
-    },
-    {
-      id: 6,
-      title: "Headstarter AI Apps",
-      description:
-        "Built and deployed 5 AI web applications using React, Next.js, Firebase, and OpenAI API. Led 4 engineers and scaled each app to 200+ users with feedback integration.",
-      image: "/ai-web-applications.png",
-      category: "ai",
-      technologies: ["React", "Next.js", "Firebase", "OpenAI API", "Clerk", "Vercel"],
-      github: "#",
-      demo: "#",
-      featured: true,
-      stats: { apps: "5", users: "200+", team: "4 engineers" },
     },
   ]
 
@@ -258,6 +269,19 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <AuroraBackground>
+            <motion.div
+              initial={{ opacity: 0.0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className="relative flex flex-col gap-4 items-center justify-center px-4"
+            >
+            </motion.div>
+          </AuroraBackground>
             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
           </div>
@@ -537,8 +561,9 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Projects Section */}
       <section id="projects" className="py-20 bg-slate-50 dark:bg-slate-800">
-        <div className="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl sm:text-5xl font-bold mb-6">
               My {""}
@@ -551,18 +576,79 @@ export default function Portfolio() {
               collections of projects i've created during my journey from student to developer.
             </p>
           </div>
-        </div>
-
-        <div>
-          {/* put some ui componenent here */}
-        </div>
-
-        <div>
-          {/* another ui component here */}
-        </div>
-
-        <div>
-          {/* finally another ui component here */}
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            {projects.map((project) => (
+              <Card
+                key={project.id}
+                className={`overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
+                  project.featured ? "ring-2 ring-blue-200 dark:ring-blue-800" : ""
+                }`}
+              >
+                <div className="w-full overflow-hidden h-40 sm:h-44 lg:h-48">
+                  <img
+                    src={project.image || "/next.svg"}
+                    alt={project.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <CardHeader className="pb-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        {project.title}
+                        {project.featured ? (
+                          <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400">Featured</Badge>
+                        ) : null}
+                      </CardTitle>
+                      <CardDescription>{project.description}</CardDescription>
+                    </div>
+                    <Badge variant="outline" className="uppercase">
+                      {project.category}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3 pt-0">
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <Badge key={`${project.id}-${tech}`} variant="secondary" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  {project.stats ? (
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(project.stats).map(([key, value]) => (
+                        <Badge key={`${project.id}-${key}`} variant="outline" className="text-xs">
+                          {key}: {value as string}
+                        </Badge>
+                      ))}
+                    </div>
+                  ) : null}
+                  <div className="flex gap-3 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => project.github && window.open(project.github, "_blank")}
+                      disabled={!project.github || project.github === "#"}
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      Code
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                      onClick={() => project.demo && window.open(project.demo, "_blank")}
+                      disabled={!project.demo || project.demo === "#"}
+                    >
+                      Demo
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -772,22 +858,7 @@ export default function Portfolio() {
                     </div>
                   </Card>
 
-                  <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center space-x-4">
-                      <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
-                        <Phone className="h-6 w-6 text-green-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">Phone</h4>
-                        <a
-                          href="tel:678-670-9868"
-                          className="text-muted-foreground hover:text-green-600 transition-colors"
-                        >
-                          (678) 670-9868
-                        </a>
-                      </div>
-                    </div>
-                  </Card>
+                  
 
                   <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
                     <div className="flex items-center space-x-4">
@@ -825,6 +896,16 @@ export default function Portfolio() {
                   >
                     <Linkedin className="mr-2 h-5 w-5" />
                     LinkedIn
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="flex-1 hover:bg-pink-50 dark:hover:bg-pink-900/20 bg-transparent"
+                    onClick={() => window.open("https://instagram.com/uohto/", "_blank")}
+                  >
+                    <Instagram className="mr-2 h-5 w-5" />
+                    Instagram
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
