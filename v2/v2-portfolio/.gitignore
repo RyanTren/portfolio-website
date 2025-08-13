@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+
+/v2/*
+/v2/v2-portfolio/package-lock.json
+/v2/v2-portfolio/package.json
