@@ -79,7 +79,7 @@ export default function Portfolio() {
       title: "Custom CNN Pose Detection",
       description:
         "Built a convolutional neural network to detect 5 specific bodybuilding poses. Fine-tuned hyperparameters and architecture to boost accuracy from 30% to 65%+.",
-      image: "/project_thumbnails/cnn-pose-detection-bodybuilding.png",
+      image: "/project_thumbnails/CNN_thumbnail.jpg",
       category: "ai/cv",
       technologies: ["Python", "TensorFlow", "Keras", "Matplotlib", "OpenCV"],
       github: "https://github.com/RyanTren/AI-CNN-Bodybuilding-Pose-Classifier",
@@ -92,7 +92,7 @@ export default function Portfolio() {
       title: "Headstarter AI Apps",
       description:
         "Built and deployed 5 AI web applications using React, Next.js, Firebase, and OpenAI API. Led 4 engineers and scaled each app to 200+ users with feedback integration.",
-      image: "/project_thumbnails/ai-web-applications.png",
+      image: "/project_thumbnails/headstarter.jpg",
       category: "fullstack",
       technologies: ["React", "Next.js", "Firebase", "OpenAI API", "Clerk", "Vercel"],
       github: "#",
@@ -117,11 +117,11 @@ export default function Portfolio() {
       title: "Music AI Prediction Model",
       description:
         "Pioneered a data AI model for predicting musical attributes (genre, mood, instrumentation) from MP3 files using Librosa. Designed pipeline extracting 15+ audio features.",
-      image: "/project_thumbnails/music-ai-waveform.png",
+      image: "/project_thumbnails/aayats_old_landing.JPG",
       category: "ai/ml",
       technologies: ["Python", "Librosa", "Hugging Face", "Unsloth", "Machine Learning"],
-      github: "#",
-      demo: "#",
+      github: "https://github.com/Aayats-StartUp",
+      demo: "https://www.aayats.com/",
       featured: false,
       stats: { features: "15+", accuracy: "78%", files: "1000+" },
     },
@@ -130,7 +130,7 @@ export default function Portfolio() {
       title: "Mental Health NLP Pipeline",
       description:
         "Built an NLP pipeline using 7 techniques including sentiment analysis and NER to detect emotional patterns in 1,000+ mental health app reviews.",
-      image: "/project_thumbnails/nlp-sentiment-dashboard.png",
+      image: "/project_thumbnails/research.jpg",
       category: "research",
       technologies: ["Python", "NLP", "Sentiment Analysis", "Web Scraping", "Data Analysis"],
       github: "#",
@@ -580,16 +580,19 @@ export default function Portfolio() {
             {projects.map((project) => (
               <Card
                 key={project.id}
-                className={`overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
+                className={`group overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
                   project.featured ? "ring-2 ring-blue-200 dark:ring-blue-800" : ""
                 }`}
               >
-                <div className="w-full overflow-hidden h-40 sm:h-44 lg:h-48">
-                  <img
-                    src={project.image || "/next.svg"}
-                    alt={project.title}
-                    className="h-full w-full object-cover"
-                  />
+                <div className="p-3">
+                  <div className="w-full overflow-hidden h-40 sm:h-44 lg:h-48 rounded-xl bg-muted">
+                    <img
+                      src={project.image || "/next.svg"}
+                      alt={project.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-3">
