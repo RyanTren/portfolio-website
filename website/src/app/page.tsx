@@ -40,11 +40,11 @@ export default function Portfolio() {
 
   const galleryImages = [
     { src: "/gallery_images/aayats_3.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/ny_1.jpg", alt: "soho" },
+    { src: "/gallery_images/hs_swim.png", alt: "prhs swim meet flick" },
     { src: "/gallery_images/aayats_1.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/ny_2.jpg", alt: "soho" },
+    { src: "/gallery_images/ny_1.jpg", alt: "soho" },
     { src: "/gallery_images/aayats_2.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/ny_3.jpg", alt: "soho" },
+    { src: "/gallery_images/ny_2.jpg", alt: "soho" },
   ]
 
   const projects = [
@@ -356,7 +356,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="about" className="py-20 bg-white dark:bg-slate-900">
+      <section id="about" className="py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -454,9 +454,9 @@ export default function Portfolio() {
                   </Card>
 
                   <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-0 flex items-center space-x-3">
+                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://steamcommunity.com/id/leaked/")} >
                       <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
-                        <Gamepad2 className="h-5 w-5 text-green-600" />
+                        <Gamepad2 className="h-5 w-5 text-green-600"/>
                       </div>
                       <div>
                         <p className="font-medium">gaming</p>
@@ -466,7 +466,7 @@ export default function Portfolio() {
                   </Card>
 
                   <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-0 flex items-center space-x-3">
+                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://open.spotify.com/user/1d6z64mw5ura8vmmak3hw7eij?si=8abe79bd4c97408f&nd=1&dlsi=ddde465d2ba64bd0", "_blank")}>
                       <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
                         <Music className="h-5 w-5 text-purple-600" />
                       </div>
@@ -506,9 +506,63 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects section */}
+      {/* Fun Stuff Section (experimenting with different ui component libaries) */}
+      <section id="custom" className="py-20 bg-white dark:bg-slate-800">
+        <div className="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl sm:text-5xl font-bold mb-6">
+              Cool Little {""}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Quirks
+              </span>
+            </h3>
+
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              just a random collections of images or ui components i found that i wanted to add to this site.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          {/* put some ui componenent here */}
+        </div>
+
+        <div>
+          {/* another ui component here */}
+        </div>
+
+        <div>
+          {/* finally another ui component here */}
+        </div>
+      </section>
+
       <section id="projects" className="py-20 bg-slate-50 dark:bg-slate-800">
-        {/* Projects content will be added here */}
+        <div className="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl sm:text-5xl font-bold mb-6">
+              My {""}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Projects
+              </span>
+            </h3>
+
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              collections of projects i've created during my journey from student to developer.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          {/* put some ui componenent here */}
+        </div>
+
+        <div>
+          {/* another ui component here */}
+        </div>
+
+        <div>
+          {/* finally another ui component here */}
+        </div>
       </section>
 
       {/* Added comprehensive experience and education timeline section */}

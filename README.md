@@ -18,6 +18,7 @@ V4 is v0's build for my portfolio website :p
 * [FloatUI](https://floatui.com/)
 * uiverse
 * [daisyUI](https://daisyui.com/)
+* [Eldora UI](https://www.eldoraui.site/docs/components/features)
 
 ### animations?
 * [three.js](https://threejs.org/)
