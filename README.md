@@ -185,4 +185,4 @@ Note: These reusable components are not currently composed in `page.tsx`; the pa
 
 
 ## ai tools to look into for future development
-v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), and cursor
+v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), claude code, and cursor
