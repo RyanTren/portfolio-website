@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import MorphingText from "@/components/eldoraui/morphingtext"
 import {
   Github,
   Linkedin,
@@ -36,7 +37,7 @@ import {
 export default function Portfolio() {
   const [currentRole, setCurrentRole] = useState(0)
   const [selectedImage, setSelectedImage] = useState(0)
-  const roles = ["Software Engineer", "AI Researcher", "Full-Stack Developer", "Tech Fellow"]
+  const roles = ["Software Engineer", "Full-Stack Developer", "Tech Fellow", "Undergraduate AI Researcher"]
 
   const galleryImages = [
     { src: "/gallery_images/aayats_3.jpg", alt: "aayats internship" },
@@ -275,13 +276,13 @@ export default function Portfolio() {
               </h1>
             </div>
 
-            {/* potential replace this with a ui lib component for a smoother and nicer animation */}
-            <div className="h-16 flex items-center justify-center">
-              <p className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground">
-                {" "}
-                <span className="font-semibold text-foreground transition-all duration-150 ease-in-out">
-                  {roles[currentRole]}
-                </span>
+            {/* used eldoraui component for this animation :) */}
+            <div className="h-16 w-full flex items-center justify-center">
+              <p className="w-full text-xl sm:text-2xl lg:text-3xl text-muted-foreground text-center">
+                <MorphingText
+                  texts={roles}
+                  className="!block !mx-auto !w-full !max-w-3xl !text-center !whitespace-nowrap !text-xl sm:!text-2xl lg:!text-3xl !font-semibold !text-foreground !h-4 sm:!h-10 lg:!h-12"
+                />
               </p>
             </div>
 
