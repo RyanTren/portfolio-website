@@ -1,8 +1,8 @@
 # Ryan's Website
 - [**V1** | Deployed Thru Github Pages](https://ryantren.github.io/portfolio-website/)
 - [**V2** | -WIP- SCRAPPED]
-- [**V3** | Next.js, Deployed with Vercel ] 
-- [**V4** | Next.js, Deployed with Vercel]
+- [**V3** | Improved with V4 ] 
+- [**V4** | Next.js, Deployed with Vercel](https://portfolio-site-swart-xi.vercel.app/)
 
 ## What's in V4?
 V4 is v0's build for my portfolio website :p
