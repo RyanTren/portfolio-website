@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import MorphingText from "@/components/eldoraui/morphingtext"
+// import { Nav } from "@/components/nav"
 
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
@@ -292,7 +293,7 @@ export default function Portfolio() {
               <Badge variant="outline" className="text-sm font-medium">
                 Available for Full-Time Opportunities
               </Badge>
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight px-4">
                 Hi, I&apos;m{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Ryan Tran
@@ -301,25 +302,25 @@ export default function Portfolio() {
             </div>
 
             {/* used eldoraui component for this animation :) */}
-            <div className="h-16 w-full flex items-center justify-center">
-              <p className="w-full text-xl sm:text-2xl lg:text-3xl text-muted-foreground text-center">
+            <div className="h-16 w-full flex items-center justify-center px-4">
+              <p className="w-full text-lg sm:text-xl lg:text-2xl xl:text-3xl text-muted-foreground text-center">
                 <MorphingText
                   texts={roles}
-                  className="!block !mx-auto !w-full !max-w-3xl !text-center !whitespace-nowrap !text-xl sm:!text-2xl lg:!text-3xl !font-semibold !text-foreground !h-4 sm:!h-10 lg:!h-12"
+                  className="!block !mx-auto !w-full !max-w-3xl !text-center !whitespace-nowrap !text-lg sm:!text-xl lg:!text-2xl xl:!text-3xl !font-semibold !text-foreground !h-4 sm:!h-8 lg:!h-10 xl:!h-12"
                 />
               </p>
             </div>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
               Passionate about building innovative AI-solutions
               through scalable web applications.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 px-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 transform hover:scale-105 cursor-pointer"
                 onClick={() => scrollToSection("projects")}
               >
                 View My Work
@@ -327,7 +328,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-muted bg-transparent"
+                className="px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-muted bg-transparent shadow-md hover:shadow-lg cursor-pointer"
                 onClick={() => window.open("/Ryan_Tran_Resume_Aug2025.pdf", "_blank")}
               >
                 <Download className="mr-2 h-5 w-5" />
@@ -336,11 +337,11 @@ export default function Portfolio() {
             </div>
 
             {/* Updated social links with real URLs and proper functionality */}
-            <div className="flex justify-center space-x-6 pt-8">
+            <div className="flex justify-center space-x-6 pt-8 px-4">
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110"
+                className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
                 onClick={() => window.open("https://github.com/RyanTren", "_blank")}
               >
                 <Github className="h-6 w-6" />
@@ -348,7 +349,7 @@ export default function Portfolio() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110"
+                className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
                 onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank")}
               >
                 <Linkedin className="h-6 w-6" />
@@ -356,7 +357,7 @@ export default function Portfolio() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-12 w-12 rounded-full hover:bg-pink-100 dark:hover:bg-pink-900/20 transition-all duration-300 hover:scale-110"
+                className="h-12 w-12 rounded-full hover:bg-pink-100 dark:hover:bg-pink-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
                 onClick={() => window.open("https://instagram.com/uohto/", "_blank")}
               >
                 <Instagram className="h-6 w-6" />
@@ -364,7 +365,7 @@ export default function Portfolio() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-12 w-12 rounded-full hover:bg-green-100 dark:hover:bg-green-900/20 transition-all duration-300 hover:scale-110"
+                className="h-12 w-12 rounded-full hover:bg-green-100 dark:hover:bg-green-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
                 onClick={() => scrollToSection("contact")}
               >
                 <Mail className="h-6 w-6" />
@@ -374,14 +375,16 @@ export default function Portfolio() {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <Button variant="ghost" size="icon" className="rounded-full" onClick={() => scrollToSection("about")}>
-              <ChevronDown className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="rounded-full cursor-pointer" onClick={() => scrollToSection("about")}>
+              <ChevronDown className="h-8 w-8" />
             </Button>
           </div>
         </div>
       </section>
 
-      <section id="about" className="py-20 bg-slate-50 dark:bg-slate-900">
+      {/* <Nav /> */}
+
+      <section id="about" className="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -409,15 +412,15 @@ export default function Portfolio() {
                 {/* Gallery Navigation */}
                 <div className="flex justify-center mt-4 space-x-2">
                   {galleryImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === selectedImage
-                          ? "bg-blue-600 scale-125"
-                          : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
-                      }`}
-                    />
+                                      <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                      index === selectedImage
+                        ? "bg-blue-600 scale-125"
+                        : "bg-gray-600 scale-125 dark:bg-gray-600 hover:bg-gray-400"
+                    }`}
+                  />
                   ))}
                 </div>
               </div>
@@ -596,16 +599,16 @@ export default function Portfolio() {
                 </div>
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <CardTitle className="text-lg flex items-center gap-2">
+                    <div className="flex-1">
+                      <CardTitle className="text-lg flex items-center gap-2 mb-2">
                         {project.title}
                         {project.featured ? (
                           <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400">Featured</Badge>
                         ) : null}
                       </CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
+                      <CardDescription className="text-sm leading-relaxed">{project.description}</CardDescription>
                     </div>
-                    <Badge variant="outline" className="uppercase">
+                    <Badge variant="outline" className="uppercase flex-shrink-0">
                       {project.category}
                     </Badge>
                   </div>
@@ -627,27 +630,31 @@ export default function Portfolio() {
                       ))}
                     </div>
                   ) : null}
-                  <div className="flex gap-3 pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1"
-                      onClick={() => project.github && window.open(project.github, "_blank")}
-                      disabled={!project.github || project.github === "#"}
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                      onClick={() => project.demo && window.open(project.demo, "_blank")}
-                      disabled={!project.demo || project.demo === "#"}
-                    >
-                      Demo
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
+                  {(project.github && project.github !== "#") || (project.demo && project.demo !== "#") ? (
+                    <div className="flex gap-3 pt-2">
+                      {project.github && project.github !== "#" && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 cursor-pointer"
+                          onClick={() => window.open(project.github, "_blank")}
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Button>
+                      )}
+                      {project.demo && project.demo !== "#" && (
+                        <Button
+                          size="sm"
+                          className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
+                          onClick={() => window.open(project.demo, "_blank")}
+                        >
+                          Demo
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  ) : null}
                 </CardContent>
               </Card>
             ))}
@@ -931,7 +938,7 @@ export default function Portfolio() {
                     <div className="text-sm text-muted-foreground">Students Mentored</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-red-600">200+</div>
+                    <div className="text-2xl font-bold text-red-600">1000+</div>
                     <div className="text-sm text-muted-foreground">App Users</div>
                   </div>
                 </div>
@@ -953,13 +960,13 @@ export default function Portfolio() {
                       <label htmlFor="firstName" className="block text-sm font-medium mb-2">
                         First Name
                       </label>
-                      <Input id="firstName" placeholder="John" />
+                      <Input id="firstName" placeholder="John" className="cursor-text" />
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium mb-2">
                         Last Name
                       </label>
-                      <Input id="lastName" placeholder="Doe" />
+                      <Input id="lastName" placeholder="Doe" className="cursor-text" />
                     </div>
                   </div>
 
@@ -967,27 +974,27 @@ export default function Portfolio() {
                     <label htmlFor="email" className="block text-sm font-medium mb-2">
                       Email
                     </label>
-                    <Input id="email" type="email" placeholder="john@example.com" />
+                                          <Input id="email" type="email" placeholder="john@example.com" className="cursor-text" />
                   </div>
 
                   <div>
                       <label htmlFor="subject" className="block text-sm font-medium mb-2">
                         Subject
                       </label>
-                      <Input id="subject" placeholder="Let&apos;s discuss a project opportunity" />
+                      <Input id="subject" placeholder="Let&apos;s discuss a project opportunity" className="cursor-text" />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">
                       Message
                     </label>
-                    <Textarea id="message" placeholder="Tell me about your project or opportunity..." rows={5} />
+                                          <Textarea id="message" placeholder="Tell me about your project or opportunity..." rows={5} className="cursor-text" />
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
                   >
                     <Send className="mr-2 h-5 w-5" />
                     Send Message
@@ -1017,6 +1024,7 @@ export default function Portfolio() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="cursor-pointer"
                   onClick={() => window.open("https://github.com/RyanTren", "_blank")}
                 >
                   <Github className="h-5 w-5" />
@@ -1024,11 +1032,12 @@ export default function Portfolio() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="cursor-pointer"
                   onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank")}
                 >
                   <Linkedin className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" onClick={() => window.open("mailto:concepting@protonmail.com")}>
+                <Button variant="ghost" size="icon" className="cursor-pointer" onClick={() => window.open("mailto:concepting@protonmail.com")}>
                   <Mail className="h-5 w-5" />
                 </Button>
               </div>
@@ -1048,7 +1057,7 @@ export default function Portfolio() {
                 <li>
                   <button
                     onClick={() => scrollToSection("projects")}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   >
                     Projects
                   </button>
@@ -1056,7 +1065,7 @@ export default function Portfolio() {
                 <li>
                   <button
                     onClick={() => scrollToSection("experience")}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   >
                     Experience
                   </button>
@@ -1064,7 +1073,7 @@ export default function Portfolio() {
                 <li>
                   <button
                     onClick={() => scrollToSection("contact")}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   >
                     Contact
                   </button>
@@ -1087,7 +1096,7 @@ export default function Portfolio() {
             <p className="text-muted-foreground text-sm">
               © 2025 Ryan Tran. Built with Next.js and deployed on Vercel.
             </p>
-            <Button variant="ghost" size="sm" onClick={scrollToTop} className="mt-4 sm:mt-0">
+            <Button variant="ghost" size="sm" onClick={scrollToTop} className="mt-4 sm:mt-0 cursor-pointer">
               <ArrowUp className="h-4 w-4 mr-2" />
               Back to Top
             </Button>
