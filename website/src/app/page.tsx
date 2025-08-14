@@ -67,7 +67,7 @@ export default function Portfolio() {
       title: "AI Mental Health SaaS",
       description:
         "Launched an AI-powered mental health platform with personalized wellness solutions, secure payments, and authentication. Onboarded 100+ users with 10+ paid subscribers.",
-      image: "/project_thumbnails/mindjourney.JPG",
+      image: "/project_thumbnails/mindjourney.jpg",
       category: "ai saas",
       technologies: ["Next.js", "JavaScript", "OpenAI", "Clerk", "Stripe", "Firebase"],
       github: "https://github.com/RyanTren/mindjourney",
@@ -106,7 +106,7 @@ export default function Portfolio() {
       title: "KSU AI Club Website",
       description:
         "Build and Deployed a web-app for my universities AI club to display events, officers, sponsors, and AI blog from Alumni and current Undergraduate and Graduate Students",
-      image: "/project_thumbnails/ksuaiclub.JPG",
+      image: "/project_thumbnails/ksuaiclub.jpg",
       category: "web dev",
       technologies: ["Next.js", "Typescript", "Tailwindcss", "Vercel"],
       github: "https://github.com/RyanTren/KSU-AI-Club-Site",
@@ -118,7 +118,7 @@ export default function Portfolio() {
       title: "Music AI Prediction Model",
       description:
         "Pioneered a data AI model for predicting musical attributes (genre, mood, instrumentation) from MP3 files using Librosa. Designed pipeline extracting 15+ audio features.",
-      image: "/project_thumbnails/aayats_old_landing.JPG",
+      image: "/project_thumbnails/aayats_old_landing.jpg",
       category: "ai/ml",
       technologies: ["Python", "Librosa", "Hugging Face", "Unsloth", "Machine Learning"],
       github: "https://github.com/Aayats-StartUp",
