@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/lib/supabase';
+import { supabaseAdmin, hasAdminAccess } from '@/lib/supabase';
 
-// Form validation schema
+// Form validation schema (with max lengths added)
 const contactSchema = z.object({
   firstName: z.string().min(1, 'First name is required').max(100),
   lastName: z.string().min(1, 'Last name is required').max(100),
@@ -18,93 +18,88 @@ const RATE_LIMIT_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
-    // Validate input
     const validatedData = contactSchema.parse(body);
-    
-    // Get client IP and user agent
     const ipAddress = getClientIP(request);
     const userAgent = request.headers.get('user-agent') || 'Unknown';
-    
+
+    // Check if admin access is available
+    if (!hasAdminAccess()) {
+      console.warn('Contact form submission received but admin access not available');
+      // Return success but log that data wasn't stored
+      return NextResponse.json({ 
+        message: 'Message received! (Note: Database storage not available)', 
+        nextAllowedTime: new Date(Date.now() + RATE_LIMIT_WINDOW).toISOString() 
+      }, { status: 200 });
+    }
+
     // Check rate limiting
     const rateLimitResult = await checkRateLimit(ipAddress, validatedData.email);
-    
     if (!rateLimitResult.allowed) {
-      return NextResponse.json(
-        { 
-          error: 'Rate limit exceeded', 
-          message: `You can only submit ${RATE_LIMIT_DAILY} contact form per day. Please try again tomorrow.`,
-          nextAllowedTime: rateLimitResult.nextAllowedTime
-        },
-        { status: 429 }
-      );
+      return NextResponse.json({
+        error: 'Rate limit exceeded',
+        message: `You can only submit one message per day. Try again after ${rateLimitResult.nextAllowedTime}`,
+        nextAllowedTime: rateLimitResult.nextAllowedTime
+      }, { status: 429 });
     }
-    
+
     // Store contact submission
-    const { error: contactError } = await supabaseAdmin
-      .from('contacts')
-      .insert({
-        first_name: validatedData.firstName,
-        last_name: validatedData.lastName,
-        email: validatedData.email,
-        subject: validatedData.subject,
-        message: validatedData.message,
-        ip_address: ipAddress,
-        user_agent: userAgent,
-      });
-    
+    const { error: contactError } = await supabaseAdmin!.from('contacts').insert({
+      first_name: validatedData.firstName,
+      last_name: validatedData.lastName,
+      email: validatedData.email,
+      subject: validatedData.subject,
+      message: validatedData.message,
+      ip_address: ipAddress,
+      user_agent: userAgent,
+    });
+
     if (contactError) {
       console.error('Database error:', contactError);
-      return NextResponse.json(
-        { error: 'Failed to save contact form' },
-        { status: 500 }
-      );
+      return NextResponse.json({
+        error: 'Failed to save contact form',
+        message: 'Your message was received but could not be saved. Please try again later.'
+      }, { status: 500 });
     }
-    
+
     // Update rate limiting
     await updateRateLimit(ipAddress, validatedData.email);
-    
-    // TODO: Send email notification (optional)
-    // await sendEmailNotification(validatedData);
-    
-    return NextResponse.json(
-      { 
-        message: 'Message sent successfully!',
-        nextAllowedTime: new Date(Date.now() + RATE_LIMIT_WINDOW).toISOString()
-      },
-      { status: 200 }
-    );
-    
+
+    return NextResponse.json({
+      message: 'Message sent successfully!',
+      nextAllowedTime: new Date(Date.now() + RATE_LIMIT_WINDOW).toISOString()
+    }, { status: 200 });
+
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Validation failed', details: error.issues },
-        { status: 400 }
-      );
-    }
-    
     console.error('Contact form error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({
+        error: 'Validation failed',
+        details: error.issues
+      }, { status: 400 });
+    }
+
+    return NextResponse.json({
+      error: 'Internal server error',
+      message: 'Something went wrong. Please try again later.'
+    }, { status: 500 });
   }
 }
 
-// Helper function to get client IP
+// Helper function to get client IP address
 function getClientIP(request: NextRequest): string {
-  // Check for forwarded IP (when behind proxy/load balancer)
+  // Check for forwarded headers (common with proxies)
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
   
-  // Check for real IP
+  // Check for real IP header
   const realIP = request.headers.get('x-real-ip');
   if (realIP) {
     return realIP;
   }
-
+  
   // Fallback to unknown if no IP header found
   return 'unknown';
 }
@@ -116,7 +111,7 @@ async function checkRateLimit(ipAddress: string, email: string): Promise<{
 }> {
   try {
     // Get current attempts for this IP/email combination
-    const { data: attempts, error } = await supabaseAdmin
+    const { data: attempts, error } = await supabaseAdmin!
       .from('contact_attempts')
       .select('*')
       .eq('ip_address', ipAddress)
@@ -161,7 +156,7 @@ async function checkRateLimit(ipAddress: string, email: string): Promise<{
 // Update rate limiting
 async function updateRateLimit(ipAddress: string, email: string): Promise<void> {
   try {
-    const { data: existing } = await supabaseAdmin
+    const { data: existing } = await supabaseAdmin!
       .from('contact_attempts')
       .select('*')
       .eq('ip_address', ipAddress)
@@ -175,7 +170,7 @@ async function updateRateLimit(ipAddress: string, email: string): Promise<void> 
       
       if (timeSinceLastAttempt >= RATE_LIMIT_WINDOW) {
         // Reset if outside window
-        await supabaseAdmin
+        await supabaseAdmin!
           .from('contact_attempts')
           .update({
             attempt_count: 1,
@@ -184,7 +179,7 @@ async function updateRateLimit(ipAddress: string, email: string): Promise<void> 
           .eq('id', existing.id);
       } else {
         // Increment within window
-        await supabaseAdmin
+        await supabaseAdmin!
           .from('contact_attempts')
           .update({
             attempt_count: existing.attempt_count + 1,
@@ -194,7 +189,7 @@ async function updateRateLimit(ipAddress: string, email: string): Promise<void> 
       }
     } else {
       // Create new record
-      await supabaseAdmin
+      await supabaseAdmin!
         .from('contact_attempts')
         .insert({
           ip_address: ipAddress,

@@ -20,21 +20,26 @@ if (!supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Temporary: Use anon key for admin operations (not recommended for production)
-// TODO: Replace with proper service role key when found
-export const supabaseAdmin = createClient(
-  supabaseUrl,
-  serviceRoleKey || supabaseAnonKey, // Fallback to anon key if service role not found
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-);
+// Only create admin client if service role key is available
+export const supabaseAdmin = serviceRoleKey 
+  ? createClient(supabaseUrl, serviceRoleKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
+    })
+  : null;
 
-// Log which key is being used
-if (!serviceRoleKey) {
-  console.warn('⚠️ WARNING: Using anon key for admin operations. This is not recommended for production.');
-  console.warn('Please add SUPABASE_SERVICE_ROLE_KEY to your .env.local file.');
+// Helper function to check if admin client is available
+export function hasAdminAccess(): boolean {
+  return !!supabaseAdmin;
+}
+
+// Log admin access status
+if (!supabaseAdmin) {
+  console.warn('⚠️ WARNING: Supabase admin client not available.');
+  console.warn('Contact form submissions will not be stored in the database.');
+  console.warn('Please add SUPABASE_SERVICE_ROLE_KEY to your environment variables.');
+} else {
+  console.log('✅ Supabase admin client configured successfully');
 }
