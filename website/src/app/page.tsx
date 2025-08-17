@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import MorphingText from "@/components/eldoraui/morphingtext"
+import { ContactForm } from "@/components/contact-form"
 // import { Nav } from "@/components/nav"
 
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -954,52 +955,7 @@ export default function Portfolio() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-0 pb-0">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                        First Name
-                      </label>
-                      <Input id="firstName" placeholder="John" className="cursor-text" />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                        Last Name
-                      </label>
-                      <Input id="lastName" placeholder="Doe" className="cursor-text" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
-                    </label>
-                                          <Input id="email" type="email" placeholder="john@example.com" className="cursor-text" />
-                  </div>
-
-                  <div>
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                        Subject
-                      </label>
-                      <Input id="subject" placeholder="Let&apos;s discuss a project opportunity" className="cursor-text" />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                                          <Textarea id="message" placeholder="Tell me about your project or opportunity..." rows={5} className="cursor-text" />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
-                  >
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
-                  </Button>
-                </form>
+                <ContactForm />
               </CardContent>
             </Card>
           </div>

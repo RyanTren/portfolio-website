@@ -5,7 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "npm run: 'ryan's site'",
+  title: "npm run ryan's site",
   description:
     "Portfolio of Ryan Tran - CS + AI and Full-Stack Development",
   generator: "v0.dev",
