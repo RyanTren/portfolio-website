@@ -147,6 +147,22 @@ export default function Portfolio() {
   const experiences = [
     {
       id: 1,
+      title: "Software Development Intern",
+      company: "Milliman",
+      location: "Chicago, IL",
+      period: "May 2026 – Aug 2026",
+      type: "Full-time",
+      description:
+        "Developed and tested full-stack web application with C#, .NET, React, TypeScript, & SQL Server for Financial Risk Management.",
+      achievements: [
+        "Iterated on dependency injected projects for REST API back-end infrastructure following SOLID/TDD principles.",
+        "Followed Agile Scrum SDLC using Git, CI/CD, and Azure DevOps",
+      ],
+      technologies: ["C#", ".NET", "React", "TypeScript", "SQL Server", "Azure DevOps", "Git"],
+      current: false,
+    },
+    {
+      id: 2,
       title: "Software Engineering Co-op",
       company: "INPO (Institute of Nuclear Power Operations)",
       location: "Atlanta, GA",
@@ -159,11 +175,11 @@ export default function Portfolio() {
         "Facilitated QA Automation, Regression Testing, & Manual Testing utilizing Ranorex, Postman, & Swagger",
         "Worked on 3+ external applications in Azure DevOps",
       ],
-      technologies: ["C#", ".NET", "Angular", "TypeScript", "SQL Server", "Azure DevOps", "Ranorex"],
+      technologies: ["C#", ".NET", "Angular", "TypeScript", "SQL Server", "Azure DevOps", "Git", "Ranorex"],
       current: true,
     },
     {
-      id: 2,
+      id: 3,
       title: "Software Tech Fellow",
       company: "CodePath",
       location: "San Francisco, CA",
@@ -179,7 +195,7 @@ export default function Portfolio() {
       current: false,
     },
     {
-      id: 3,
+      id: 4,
       title: "Software Engineering Intern",
       company: "Aayats",
       location: "Atlanta, GA",
@@ -196,7 +212,7 @@ export default function Portfolio() {
       current: false,
     },
     {
-      id: 4,
+      id: 5,
       title: "Software Engineering Fellow",
       company: "Headstarter AI",
       location: "Long Island City, NY",
@@ -213,7 +229,7 @@ export default function Portfolio() {
       current: false,
     },
     {
-      id: 5,
+      id: 6,
       title: "AI Undergraduate Researcher",
       company: "Kennesaw State University",
       location: "Marietta, GA",
@@ -236,8 +252,8 @@ export default function Portfolio() {
     location: "Marietta, GA",
     degree: "Bachelor of Science in Computer Science",
     period: "Expected Graduation May 2026",
-    gpa: "3.79 / 4.0",
-    clubs: ["KSU AI Club", "KSU Electric Vehicle Team", "KSU Vietnamese Student Association"],
+    gpa: "3.75 / 4.0",
+    clubs: ["KSU AI Club", "KSU Vietnamese Student Association"],
   }
 
   // const filteredProjects = selectedCategory === "all" ? projects : projects.filter((project) => project.category === selectedCategory)
@@ -304,12 +320,10 @@ export default function Portfolio() {
 
             {/* used eldoraui component for this animation :) */}
             <div className="h-16 w-full flex items-center justify-center px-4">
-              <p className="w-full text-lg sm:text-xl lg:text-2xl xl:text-3xl text-muted-foreground text-center">
-                <MorphingText
+              <MorphingText
                   texts={roles}
                   className="!block !mx-auto !w-full !max-w-3xl !text-center !whitespace-nowrap !text-lg sm:!text-xl lg:!text-2xl xl:!text-3xl !font-semibold !text-foreground !h-4 sm:!h-8 lg:!h-10 xl:!h-12"
                 />
-              </p>
             </div>
 
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
@@ -330,7 +344,7 @@ export default function Portfolio() {
                 variant="outline"
                 size="lg"
                 className="px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-muted bg-transparent shadow-md hover:shadow-lg cursor-pointer"
-                onClick={() => window.open("/Ryan_Tran_Resume_Aug2025.pdf", "_blank")}
+                onClick={() => window.open("/Ryan_Tran_Resume_June2025.pdf", "_blank")}
               >
                 <Download className="mr-2 h-5 w-5" />
                 Download Resume
@@ -714,7 +728,7 @@ export default function Portfolio() {
                     <Award className="h-5 w-5 text-green-600" />
                     <div>
                       <p className="font-medium text-green-800 dark:text-green-400">GPA: {education.gpa}</p>
-                      <p className="text-xs text-green-600">Dean's List Candidate</p>
+                      <p className="text-xs text-green-600">President & Dean's List Candidate</p>
                     </div>
                   </div>
 
