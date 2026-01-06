@@ -136,7 +136,7 @@ Note: These reusable components are not currently composed in `page.tsx`; the pa
 
 - `public/` contains:
   - Icons and SVGs for gallery and theming (`next.svg`, `vercel.svg`, etc.)
-  - Resume PDF `Ryan_Tran_Resume_Aug2025.pdf` referenced in CTA button.
+  - Resume PDF `Ryan_Tran_Resume_June2025.pdf` referenced in CTA button.
 - Images in `page.tsx` gallery use static paths (e.g., `/asian-male-computer-science-headshot.png`). Ensure these exist in `public/`; otherwise, fallback to `/placeholder.svg` is used in some places.
 
 ---
