@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import MorphingText from "@/components/eldoraui/morphingtext"
+import { ContactForm } from "@/components/contact-form"
 // import { Nav } from "@/components/nav"
 
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -67,7 +68,7 @@ export default function Portfolio() {
       title: "AI Mental Health SaaS",
       description:
         "Launched an AI-powered mental health platform with personalized wellness solutions, secure payments, and authentication. Onboarded 100+ users with 10+ paid subscribers.",
-      image: "/project_thumbnails/mindjourney.JPG",
+      image: "/project_thumbnails/mindjourney.jpg",
       category: "ai saas",
       technologies: ["Next.js", "JavaScript", "OpenAI", "Clerk", "Stripe", "Firebase"],
       github: "https://github.com/RyanTren/mindjourney",
@@ -106,7 +107,7 @@ export default function Portfolio() {
       title: "KSU AI Club Website",
       description:
         "Build and Deployed a web-app for my universities AI club to display events, officers, sponsors, and AI blog from Alumni and current Undergraduate and Graduate Students",
-      image: "/project_thumbnails/ksuaiclub.JPG",
+      image: "/project_thumbnails/ksuaiclub.jpg",
       category: "web dev",
       technologies: ["Next.js", "Typescript", "Tailwindcss", "Vercel"],
       github: "https://github.com/RyanTren/KSU-AI-Club-Site",
@@ -118,7 +119,7 @@ export default function Portfolio() {
       title: "Music AI Prediction Model",
       description:
         "Pioneered a data AI model for predicting musical attributes (genre, mood, instrumentation) from MP3 files using Librosa. Designed pipeline extracting 15+ audio features.",
-      image: "/project_thumbnails/aayats_old_landing.JPG",
+      image: "/project_thumbnails/aayats_old_landing.jpg",
       category: "ai/ml",
       technologies: ["Python", "Librosa", "Hugging Face", "Unsloth", "Machine Learning"],
       github: "https://github.com/Aayats-StartUp",
@@ -968,52 +969,7 @@ export default function Portfolio() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-0 pb-0">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                        First Name
-                      </label>
-                      <Input id="firstName" placeholder="John" className="cursor-text" />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                        Last Name
-                      </label>
-                      <Input id="lastName" placeholder="Doe" className="cursor-text" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
-                    </label>
-                                          <Input id="email" type="email" placeholder="john@example.com" className="cursor-text" />
-                  </div>
-
-                  <div>
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                        Subject
-                      </label>
-                      <Input id="subject" placeholder="Let&apos;s discuss a project opportunity" className="cursor-text" />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                                          <Textarea id="message" placeholder="Tell me about your project or opportunity..." rows={5} className="cursor-text" />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
-                  >
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
-                  </Button>
-                </form>
+                <ContactForm />
               </CardContent>
             </Card>
           </div>

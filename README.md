@@ -1,7 +1,7 @@
 # Ryan's Website
 - [**V1** | Deployed Thru Github Pages](https://ryantren.github.io/portfolio-website/)
-- [**V2** | -WIP- SCRAPPED]
-- [**V3** | Improved with V4 ] 
+- [**V2** | -WIP- SCRAPPED](https://github.com/RyanTren/portfolio-website/tree/v2)
+- [**V3** | Improved with V4 ](https://github.com/RyanTren/portfolio-website/tree/v3)
 - [**V4** | Next.js, Deployed with Vercel](https://portfolio-site-swart-xi.vercel.app/)
 
 ## What's in V4?
@@ -22,7 +22,7 @@ V4 is v0's build for my portfolio website :p
 
 ### animations?
 * [three.js](https://threejs.org/)
-* idk
+* [framer motion](https://motion.dev/docs/react)
 
 ## Rendering Architecture
 
@@ -186,4 +186,4 @@ Note: These reusable components are not currently composed in `page.tsx`; the pa
 
 
 ## ai tools to look into for future development
-v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), claude code, and cursor
+v0, loveable, bolt.new, [builder.io](https://www.builder.io/), [coderabbit](https://www.coderabbit.ai/), [mintlify](https://mintlify.com/), [framer](https://www.framer.com/), claude code, and cursor
