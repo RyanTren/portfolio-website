@@ -25,11 +25,7 @@ import {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
     }
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-export function Hero({ name, tagline, socials }: HeroProps) {
+export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center ">
