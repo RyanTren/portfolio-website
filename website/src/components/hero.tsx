@@ -49,18 +49,25 @@ export function Hero() {
           </div>
 
           {/* Main Content */}
-          <div className="relative z-10 space-y-6">
-            <div className="space-y-2">
-              {/* <Badge variant="outline" className="text-sm font-medium">
-                Available for Full-Time Opportunities
-              </Badge> */}
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4">
+          <div className="relative z-10">
+            <div className="relative space-y-2 min-h-[100px] flex items-center justify-center">
+              <img 
+                src="/hero-background/pond.gif" 
+                alt="ease your mind" 
+                className="absolute inset-0 w-full h-17 object-cover opacity-65 z-0 rounded-lg"
+              />
+
+            {/* Foreground text */}
+            <div className="relative z-10">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4 text-shadow-xs">
                 hi, i&apos;m{" "}
                 <span className="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
                   ryan tran
                 </span>
               </h1>
             </div>
+
+          </div>
 
             {/* used eldoraui component for this animation :) */}
             <div className="h-10 w-full flex items-center justify-center px-4">
