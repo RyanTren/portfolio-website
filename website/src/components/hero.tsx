@@ -59,7 +59,7 @@ export function Hero() {
 
             {/* Foreground text */}
             <div className="relative z-10">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4 text-shadow-xs">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4 drop-shadow-cyan-500/50">
                 hi, i&apos;m{" "}
                 <span className="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
                   ryan tran
