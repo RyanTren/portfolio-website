@@ -44,13 +44,9 @@ export default function Portfolio() {
   const [currentRole, setCurrentRole] = useState(0)
   const [selectedImage, setSelectedImage] = useState(0)
   const roles = [
-    "Software Engineer Co-op @ INPO", 
-    "Full-Stack Developer", 
-    "Previous Tech Fellow @ CodePath", 
-    "Previous Software Engineering Fellow @ Headstarter", 
-    "Previous Prompt Engineer @ Contractor to Scale AI", 
-    "Undergraduate Student @ KSU", 
-    "Previous Undergraduate AI Researcher @ KSU"
+    "sde intern @ milliman", 
+    "prev. swe intern @ inpo & aayats",
+    "graduated magna cum laude cs + ai @ ksu"
   ]
 
   const galleryImages = [
@@ -150,7 +146,7 @@ export default function Portfolio() {
       title: "Software Development Intern",
       company: "Milliman",
       location: "Chicago, IL",
-      period: "May 2026 – Aug 2026",
+      period: "June 2026 – Aug 2026",
       type: "Full-time",
       description:
         "Developed and tested full-stack web application with C#, .NET, React, TypeScript, & SQL Server for Financial Risk Management.",
@@ -159,14 +155,14 @@ export default function Portfolio() {
         "Followed Agile Scrum SDLC using Git, CI/CD, and Azure DevOps",
       ],
       technologies: ["C#", ".NET", "React", "TypeScript", "SQL Server", "Azure DevOps", "Git"],
-      current: false,
+      current: true,
     },
     {
       id: 2,
       title: "Software Engineering Co-op",
       company: "INPO (Institute of Nuclear Power Operations)",
       location: "Atlanta, GA",
-      period: "May 2025 – Present",
+      period: "May 2025 – May 2026",
       type: "Full-time",
       description:
         "Developed and tested full-stack web applications with C#, .NET, Angular, TypeScript, & T-SQL/SQL Server across 3 projects.",
@@ -176,7 +172,7 @@ export default function Portfolio() {
         "Worked on 3+ external applications in Azure DevOps",
       ],
       technologies: ["C#", ".NET", "Angular", "TypeScript", "SQL Server", "Azure DevOps", "Git", "Ranorex"],
-      current: true,
+      current: false,
     },
     {
       id: 3,
@@ -251,8 +247,8 @@ export default function Portfolio() {
     school: "Kennesaw State University",
     location: "Marietta, GA",
     degree: "Bachelor of Science in Computer Science",
-    period: "Expected Graduation May 2026",
-    gpa: "3.75 / 4.0",
+    period: "Graduated May 2026",
+    gpa: "3.72 / 4.0",
     clubs: ["KSU AI Club", "KSU Vietnamese Student Association"],
   }
 
@@ -307,13 +303,13 @@ export default function Portfolio() {
           {/* Main Content */}
           <div className="relative z-10 space-y-6">
             <div className="space-y-2">
-              <Badge variant="outline" className="text-sm font-medium">
+              {/* <Badge variant="outline" className="text-sm font-medium">
                 Available for Full-Time Opportunities
-              </Badge>
+              </Badge> */}
               <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight px-4">
-                Hi, I&apos;m{" "}
+                hi, i&apos;m{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Ryan Tran
+                  ryan tran
                 </span>
               </h1>
             </div>
@@ -344,7 +340,7 @@ export default function Portfolio() {
                 variant="outline"
                 size="lg"
                 className="px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-muted bg-transparent shadow-md hover:shadow-lg cursor-pointer"
-                onClick={() => window.open("/Ryan_Tran_Resume_June2025.pdf", "_blank")}
+                onClick={() => window.open("/Tran_Resume_Mar2026.pdf", "_blank")}
               >
                 <Download className="mr-2 h-5 w-5" />
                 Download Resume
@@ -682,13 +678,13 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              Professional{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Experience{" "}
+              {/* <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Journey
-              </span>
+              </span> */}
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-              From a teen in retail for the summer to corporate software engineer, here&apos;s my journey.
+              all the places i&apos;ve worked since starting my cs/swe journey
             </p>
           </div>
 
