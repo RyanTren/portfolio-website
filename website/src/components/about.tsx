@@ -26,7 +26,7 @@ export function About() {
   useEffect(() => {
       const galleryInterval = setInterval(() => {
         setSelectedImage((prev) => (prev + 1) % galleryImages.length)
-      }, 4000)
+      }, 2000)
       return () => clearInterval(galleryInterval)
     }, [galleryImages.length]);
 
@@ -48,11 +48,11 @@ export function About() {
             {/* Photo Gallery */}
             <div className="space-y-6">
               <div className="relative">
-                <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20">
+                <div className="aspect-square rounded-3xl overflow-hidden">
                   <img
-                    src={galleryImages[selectedImage].src || "/next.svg"}
+                    src={galleryImages[selectedImage].src}
                     alt={galleryImages[selectedImage].alt}
-                    className="w-full h-full object-cover transition-all duration-500"
+                    className="w-full h-full object-cover transition-all duration-300"
                   />
                 </div>
 
