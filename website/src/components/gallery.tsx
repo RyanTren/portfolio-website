@@ -1,27 +1,34 @@
-interface GalleryProps {
-  items: { src: string; alt: string }[];
-}
 
-export function Gallery({ items }: GalleryProps) {
+export function Gallery() {
   return (
-    <section id="gallery" className="w-full py-16">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-2xl font-semibold">Gallery</h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {items.map((img, idx) => (
-            <div key={idx} className="group relative overflow-hidden rounded-lg border">
-              {/* Using native img to avoid configuring domains; can swap to next/image later */}
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="h-32 w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          ))}
+    <section id="custom" className="py-20 bg-white dark:bg-slate-800">
+        <div className="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl sm:text-5xl font-bold mb-6">
+              under {""}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                construction!
+              </span>
+            </h3>
+
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              just a random collections of images or ui components i found that i wanted to add to this site.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div>
+          {/* put some ui componenent here */}
+        </div>
+
+        <div>
+          {/* another ui component here */}
+        </div>
+
+        <div>
+          {/* finally another ui component here */}
+        </div>
+      </section>
   );
 }
 

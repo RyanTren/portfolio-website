@@ -15,6 +15,7 @@ export function About() {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const galleryImages = [
+    { src: "/gallery_images/milliman_1.jpg", alt: "posted up wit the fam!" },
     { src: "/gallery_images/inpo_4.jpg", alt: "ootd @ inpo" },
     { src: "/gallery_images/inpo_1.jpg", alt: "inpo rotation 2 get-together!" },
     { src: "/gallery_images/aayats_1.jpg", alt: "me & lucas grinding! (CTO @ aayats)" },
