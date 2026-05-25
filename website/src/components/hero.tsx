@@ -28,6 +28,7 @@ import {
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      
         <div className="max-w-4xl mx-auto text-center ">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -44,24 +45,30 @@ export function Hero() {
             >
             </motion.div>
           </AuroraBackground>
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
           </div>
+          
+          <img 
+            src="/hero-background/pond.gif" 
+            alt="ease your mind" 
+            className="absolute inset-0 inset-shadow-black w-full h-full object-scale-fill opacity-15 z-0 rounded-lg"
+          />
 
           {/* Main Content */}
           <div className="relative z-10">
             <div className="relative space-y-2 min-h-[100px] flex items-center justify-center">
-              <img 
+              {/* <img 
                 src="/hero-background/pond.gif" 
                 alt="ease your mind" 
-                className="absolute inset-0 w-full h-17 object-cover opacity-65 z-0 rounded-lg"
-              />
+                className="absolute inset-0 inset-shadow-black-500/50 w-full h-full object-fill opacity-65 z-0 rounded-lg"
+              /> */}
 
             {/* Foreground text */}
             <div className="relative z-10">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4 drop-shadow-cyan-500/50">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight px-4 text-shadow-white text-shadow-md/30">
                 hi, i&apos;m{" "}
-                <span className="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent text-shadow-mist-700 text-shadow-md/17">
                   ryan tran
                 </span>
               </h1>
@@ -87,15 +94,24 @@ export function Hero() {
                 <Code2 className="h-5 w-5"/>
                 my work
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-muted bg-transparent shadow-md hover:shadow-lg cursor-pointer"
-                onClick={() => window.open("/Tran_Resume_Mar2026.pdf", "_blank")}
-              >
-                <Download className="mr-2 h-5 w-5" />
-                my resume
-              </Button>
+
+              <div className="relative inline-flex">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="text-lg font-medium transition-all duration-300 bg-transparent shadow-md hover:shadow-lg cursor-pointer shadow-2xl/20 inset-shadow-sm hover:inset-shadow-none inset-shadow-current/20 backdrop-blur-sm bg-(--glass-bg) inset-shadow-sm text-neutral-600 w-fit "
+                  onClick={() => window.open("/Tran_Resume_Mar2026.pdf", "_blank")}
+                >
+                  <Download className="h-5 w-5" />
+                  my resume
+                </Button>
+
+                {/* Ping indicator anchored to top-right corner of the button */}
+                <span className="absolute -top-1 -right-1 flex size-3">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex size-3 rounded-full bg-green-500"></span>
+                </span>
+              </div>
             </div>
 
             {/* Updated social links with real URLs and proper functionality */}

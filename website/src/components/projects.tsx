@@ -97,14 +97,14 @@ export function Projects() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl sm:text-5xl font-bold mb-6">
-              My {""}
+              personal {""}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Projects
+                projects
               </span>
             </h3>
 
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-              collections of projects i've created during my journey from student to developer.
+              development during my journey from student to developer.
             </p>
           </div>
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">

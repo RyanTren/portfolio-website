@@ -15,18 +15,20 @@ export function About() {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const galleryImages = [
-    { src: "/gallery_images/aayats_3.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/hs_swim.png", alt: "prhs swim meet flick" },
-    { src: "/gallery_images/aayats_1.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/ny_1.jpg", alt: "soho" },
-    { src: "/gallery_images/aayats_2.jpg", alt: "aayats internship" },
-    { src: "/gallery_images/ny_2.jpg", alt: "soho" },
+    { src: "/gallery_images/milliman_1.jpg", alt: "posted up wit the fam!" },
+    { src: "/gallery_images/inpo_4.jpg", alt: "ootd @ inpo" },
+    { src: "/gallery_images/inpo_1.jpg", alt: "inpo rotation 2 get-together!" },
+    { src: "/gallery_images/aayats_1.jpg", alt: "me & lucas grinding! (CTO @ aayats)" },
+    { src: "/gallery_images/aayats_2.jpg", alt: "me & lucas grinding! pt.2" },
+    { src: "/gallery_images/inpo_2.jpg", alt: "anuj (prev. co-op @ inpo) drawing of our hangout!" },
+    { src: "/gallery_images/aayats_3.jpg", alt: "prof. pics at techstars demo day for aayats" },
+    { src: "/gallery_images/inpo_3.jpg", alt: "work setup @ inpo" },
   ];
 
   useEffect(() => {
       const galleryInterval = setInterval(() => {
         setSelectedImage((prev) => (prev + 1) % galleryImages.length)
-      }, 4000)
+      }, 2000)
       return () => clearInterval(galleryInterval)
     }, [galleryImages.length]);
 
@@ -48,11 +50,11 @@ export function About() {
             {/* Photo Gallery */}
             <div className="space-y-6">
               <div className="relative">
-                <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20">
+                <div className="aspect-square rounded-3xl overflow-hidden">
                   <img
-                    src={galleryImages[selectedImage].src || "/next.svg"}
+                    src={galleryImages[selectedImage].src}
                     alt={galleryImages[selectedImage].alt}
-                    className="w-full h-full object-cover transition-all duration-500"
+                    className="w-full h-full object-cover transition-all duration-400 transition-ease-in-out"
                   />
                 </div>
 
@@ -64,8 +66,8 @@ export function About() {
                       onClick={() => setSelectedImage(index)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                         index === selectedImage
-                          ? "bg-blue-600 scale-125"
-                          : "bg-gray-600 scale-125 dark:bg-gray-600 hover:bg-gray-400"
+                          ? "bg-lime-600 scale-125 drop-shadow-lg hover:bg-emerald-600"
+                          : "bg-gray-600 scale-95 drop-shadow-2xl dark:bg-gray-600 hover:bg-gray-400"
                       }`}
                     />
                   ))}
@@ -73,14 +75,14 @@ export function About() {
               </div>
 
               {/* Mini Gallery Thumbnails */}
-              <div className="grid grid-cols-3 gap-3">
-                {galleryImages.slice(0, 3).map((image, index) => (
+              <div className="grid grid-cols-4 gap-3">
+                {galleryImages.slice(0, 4).map((image, index) => (
                   <div
                     key={index}
                     className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img src={image.src || "/next.svg"} alt={image.alt} className="w-full h-full object-cover" />
+                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -102,9 +104,9 @@ export function About() {
 
               {/* Interests & Hobbies */}
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold">When I&apos;m Not Coding</h3>
+                <h3 className="text-2xl font-semibold">When I&apos;m Not Coding</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                  <Card className="p-4 hover:shadow-lg transition-shadow duration-400">
                     <CardContent className="p-0 flex items-center space-x-3">
                       <div className="p-2 bg-red-100 dark:bg-red-900/20 rounded-lg">
                         <Heart className="h-5 w-5 text-red-600" />
@@ -116,7 +118,7 @@ export function About() {
                     </CardContent>
                   </Card>
 
-                  <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                  <Card className="p-4 hover:shadow-lg transition-shadow duration-400">
                     <CardContent className="p-0 flex items-center space-x-3">
                       <div className="p-2 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
                         <Coffee className="h-5 w-5 text-amber-600" />
@@ -128,7 +130,7 @@ export function About() {
                     </CardContent>
                   </Card>
 
-                  <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                  <Card className="p-4 hover:shadow-lg transition-shadow duration-400 cursor-pointer">
                     <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://steamcommunity.com/id/leaked/")} >
                       <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
                         <Gamepad2 className="h-5 w-5 text-green-600"/>
@@ -140,7 +142,7 @@ export function About() {
                     </CardContent>
                   </Card>
 
-                  <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                  <Card className="p-4 hover:shadow-lg transition-shadow duration-400 cursor-pointer">
                     <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://open.spotify.com/user/1d6z64mw5ura8vmmak3hw7eij?si=8abe79bd4c97408f&nd=1&dlsi=ddde465d2ba64bd0", "_blank")}>
                       <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
                         <Music className="h-5 w-5 text-purple-600" />
@@ -155,8 +157,9 @@ export function About() {
               </div>
 
               {/* Fun Facts */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 rounded-xl p-6">
-                <h4 className="font-bold text-lg mb-4">Fun Facts</h4>
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 rounded-xl p-6 drop-shadow-sm">
+                <h4 className="font-bold text-lg mb-4">fun facts</h4>
+
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>

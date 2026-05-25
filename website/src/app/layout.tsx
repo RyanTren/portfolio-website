@@ -7,7 +7,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "npm run ryan's site",
   description:
-    "Portfolio of Ryan Tran - CS + AI and Full-Stack Development",
+    "Ryan Tran - CS + AI and Full-Stack Development",
   generator: "v0.dev",
 }
 

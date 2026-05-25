@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Nav } from "@/components/nav"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
+import { Gallery } from "@/components/gallery";
 import { Projects } from "@/components/projects"
 import { Experience } from "@/components/experience"
 import { ContactForm } from "@/components/contact-form"
@@ -46,35 +47,8 @@ export default function Portfolio() {
       <About />
 
       {/* Fun Stuff Section (experimenting with different ui component libaries) */}
-      <section id="custom" className="py-20 bg-white dark:bg-slate-800">
-        <div className="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl sm:text-5xl font-bold mb-6">
-              Cool Little {""}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Quirks
-              </span>
-            </h3>
 
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-              just a random collections of images or ui components i found that i wanted to add to this site.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          {/* put some ui componenent here */}
-        </div>
-
-        <div>
-          {/* another ui component here */}
-        </div>
-
-        <div>
-          {/* finally another ui component here */}
-        </div>
-      </section>
-
+      <Gallery />
       <Projects />
       <Experience />
 
