@@ -38,14 +38,16 @@ export function Nav() {
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  };
+
   return (
     <header className="fixed top-0 z-40 w-full border-b bg-background/30 backdrop-blur border-none rounded-b-lg shadow-xs">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 sm:px-8">
-        <button  onClick={() => scrollToSection('#')}>
-          <Link href="#" className="text-sm font-semibold ">
-            <Home className="font-thin h-3 w-3 hover:text-green-500 transition-all duration-300" />
-          </Link>
-        </button>
+        <Link href="#" className="text-sm font-semibold" onClick={() => scrollToTop()}>
+          <Home className="font-thin h-3 w-3 hover:text-green-500 transition-all duration-300" />
+        </Link>
 
         <nav className="hidden gap-8 text-sm sm:flex">
           {links.map((pageSelection) => (
