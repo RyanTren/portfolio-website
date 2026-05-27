@@ -179,7 +179,7 @@ export function ContactForm() {
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
+        className="w-full bg-gradient-to-r from-orange-600 to-green-600 hover:drop-shadow-lg hover:duration-500 text-white cursor-pointer"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
