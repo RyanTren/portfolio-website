@@ -1,3 +1,4 @@
+"use client"
 
 import React from "react";
 import { useState, useEffect } from "react"
@@ -57,11 +58,12 @@ export function About() {
             {/* Photo Gallery */}
             <div className="space-y-6">
               <div className="relative">
-                <div className="aspect-square rounded-3xl overflow-hidden">
+                <div className="relative aspect-square rounded-3xl overflow-hidden">
                   <Image
                     src={galleryImages[selectedImage].src}
                     alt={galleryImages[selectedImage].alt}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     priority
                     className="w-full h-full object-cover transition-all duration-400 transition-ease-in-out"
                   />
@@ -88,10 +90,10 @@ export function About() {
                 {galleryImages.slice(0, 4).map((image, index) => (
                   <div
                     key={index}
-                    className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
+                    className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                    <Image src={image.src} alt={image.alt} fill sizes="(max-width: 768px) 25vw, 12.5vw" className="object-cover" />
                   </div>
                 ))}
               </div>
@@ -140,7 +142,7 @@ export function About() {
                   </Card>
 
                   <Card className="p-4 hover:shadow-lg transition-shadow duration-400 cursor-pointer">
-                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://steamcommunity.com/id/leaked/")} >
+                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://steamcommunity.com/id/leaked/", "_blank", "noopener,noreferrer")} >
                       <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
                         <Gamepad2 className="h-5 w-5 text-green-600"/>
                       </div>
@@ -152,7 +154,7 @@ export function About() {
                   </Card>
 
                   <Card className="p-4 hover:shadow-lg transition-shadow duration-400 cursor-pointer">
-                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://open.spotify.com/user/1d6z64mw5ura8vmmak3hw7eij?si=8abe79bd4c97408f&nd=1&dlsi=ddde465d2ba64bd0", "_blank")}>
+                    <CardContent className="p-0 flex items-center space-x-3" onClick={() => window.open("https://open.spotify.com/user/1d6z64mw5ura8vmmak3hw7eij?si=8abe79bd4c97408f&nd=1&dlsi=ddde465d2ba64bd0", "_blank", "noopener,noreferrer")}>
                       <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
                         <Music className="h-5 w-5 text-purple-600" />
                       </div>

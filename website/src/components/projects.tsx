@@ -1,7 +1,6 @@
+"use client"
 
-import { motion } from "framer-motion"
-import React from "react";
-import { useState, useEffect } from "react"
+import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -117,11 +116,13 @@ export function Projects() {
               >
                 <div className="p-3">
                   <div className="w-full overflow-hidden h-40 sm:h-44 lg:h-48 rounded-xl bg-muted">
-                    <img
+                    <Image
                       src={project.image || "/next.svg"}
                       alt={project.title}
-                      loading="lazy"
+                      width={400}
+                      height={200}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -165,7 +166,7 @@ export function Projects() {
                           variant="outline"
                           size="sm"
                           className="flex-1 cursor-pointer"
-                          onClick={() => window.open(project.github, "_blank")}
+                          onClick={() => window.open(project.github, "_blank", "noopener,noreferrer")}
                         >
                           <Github className="mr-2 h-4 w-4" />
                           Code
@@ -175,7 +176,7 @@ export function Projects() {
                         <Button
                           size="sm"
                           className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white cursor-pointer"
-                          onClick={() => window.open(project.demo, "_blank")}
+                          onClick={() => window.open(project.demo, "_blank", "noopener,noreferrer")}
                         >
                           Demo
                           <ExternalLink className="ml-2 h-4 w-4" />

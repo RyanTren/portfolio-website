@@ -1,3 +1,5 @@
+"use client"
+
 import { useImagePreview } from "@/hooks/useImagePreview";
 import { useRef, useMemo } from "react";
 import { CircleX, ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
@@ -68,14 +70,13 @@ export function Gallery() {
             className="aspect-4/2 rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-200 will-change-transform"
             onClick={handlers[i]}
           >
-            <img
+            <Image
               src={img.src}
               alt={img.alt}
               width={400}
               height={200}
               className="w-full h-full object-cover"
               loading={i < 6 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : "auto"}
             />
           </div>
         ))}
@@ -83,13 +84,6 @@ export function Gallery() {
 
       {openIndex !== null && (
         <>
-          {/* preload adjacent images */}
-          {[(openIndex + 1) % photodumpImages.length,
-            (openIndex - 1 + photodumpImages.length) % photodumpImages.length
-          ].map(i => (
-            <link key={i} rel="preload" as="image" href={photodumpImages[i].src} />
-          ))}
-
           <div
             ref={backdropRef}
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
