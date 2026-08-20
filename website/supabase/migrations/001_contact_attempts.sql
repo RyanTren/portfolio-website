@@ -39,7 +39,12 @@ CREATE POLICY "Service role can read contact attempts"
 CREATE EXTENSION IF NOT EXISTS pg_cron;
 
 -- Remove old cron job if it exists, then recreate
-SELECT cron.unschedule('cleanup-contact-attempts');
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'cleanup-contact-attempts') THEN
+    PERFORM cron.unschedule('cleanup-contact-attempts');
+  END IF;
+END $$;
 
 -- Create the cron job to clean up old records (daily at 2 AM UTC)
 SELECT cron.schedule(
