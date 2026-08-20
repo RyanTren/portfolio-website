@@ -5,48 +5,151 @@ import { supabaseAdmin, hasAdminAccess } from '@/lib/supabase';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// In-memory rate limiting (resets on cold start, good enough for portfolio)
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+// Rate limiting configuration
+const RATE_LIMITS = {
+  perIP: 3,           // Max submissions per IP per day
+  perEmail: 2,        // Max submissions per email per day
+  windowHours: 24,    // Time window in hours
+  minTimeSeconds: 10, // Minimum time between submissions (anti-bot)
+};
 
-function checkRateLimit(ip: string): { allowed: boolean; resetAt?: Date } {
-  const now = Date.now();
-  const record = rateLimitStore.get(ip);
-  
-  if (!record || now > record.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + 24 * 60 * 60 * 1000 });
-    return { allowed: true, resetAt: new Date(now + 24 * 60 * 60 * 1000) };
+// Honeypot field name (bots fill this out, humans don't)
+const HONEYPOT_FIELD = 'website_url';
+
+// Form validation schema with stricter rules
+const contactSchema = z.object({
+  firstName: z.string()
+    .min(1, 'First name is required')
+    .max(50, 'First name too long')
+    .regex(/^[a-zA-Z\s'-]+$/, 'First name contains invalid characters'),
+  lastName: z.string()
+    .min(1, 'Last name is required')
+    .max(50, 'Last name too long')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Last name contains invalid characters'),
+  email: z.string()
+    .email('Invalid email address')
+    .max(255, 'Email too long')
+    .refine((email) => {
+      // Block disposable email domains
+      const disposableDomains = [
+        'dsadsa.com', 'mgasjkd.com', 'tempmail.com', 'throwaway.com',
+        'guerrillamail.com', 'mailinator.com', 'yopmail.com',
+        '10minutemail.com', 'trashmail.com', 'fakeinbox.com',
+      ];
+      const domain = email.split('@')[1]?.toLowerCase();
+      return !disposableDomains.includes(domain);
+    }, 'Please use a valid email address'),
+  subject: z.string()
+    .min(1, 'Subject is required')
+    .max(100, 'Subject too long'),
+  message: z.string()
+    .min(10, 'Message must be at least 10 characters')
+    .max(2000, 'Message too long'),
+  // Honeypot field - should be empty
+  [HONEYPOT_FIELD]: z.string().max(0).optional(),
+  // Timestamp from form submission
+  formTimestamp: z.string().optional(),
+});
+
+// Check rate limit using Supabase
+async function checkRateLimit(
+  ip: string, 
+  email: string
+): Promise<{ allowed: boolean; resetAt?: Date; reason?: string }> {
+  if (!hasAdminAccess()) {
+    // If no Supabase, use basic in-memory (less secure but functional)
+    return { allowed: true };
   }
-  
-  if (record.count >= 3) {
-    return { allowed: false, resetAt: new Date(record.resetAt) };
+
+  const now = new Date();
+  const windowStart = new Date(now.getTime() - RATE_LIMITS.windowHours * 60 * 60 * 1000);
+
+  // Check IP rate limit
+  const { count: ipCount } = await supabaseAdmin!
+    .from('contact_attempts')
+    .select('*', { count: 'exact', head: true })
+    .eq('ip_address', ip)
+    .gte('created_at', windowStart.toISOString());
+
+  if (ipCount && ipCount >= RATE_LIMITS.perIP) {
+    return { 
+      allowed: false, 
+      reason: 'IP rate limit exceeded',
+      resetAt: new Date(windowStart.getTime() + RATE_LIMITS.windowHours * 60 * 60 * 1000)
+    };
   }
-  
-  record.count++;
-  return { allowed: true, resetAt: new Date(record.resetAt) };
+
+  // Check email rate limit
+  const { count: emailCount } = await supabaseAdmin!
+    .from('contact_attempts')
+    .select('*', { count: 'exact', head: true })
+    .eq('email', email)
+    .gte('created_at', windowStart.toISOString());
+
+  if (emailCount && emailCount >= RATE_LIMITS.perEmail) {
+    return { 
+      allowed: false, 
+      reason: 'Email rate limit exceeded',
+      resetAt: new Date(windowStart.getTime() + RATE_LIMITS.windowHours * 60 * 60 * 1000)
+    };
+  }
+
+  return { allowed: true };
 }
 
-// Form validation schema
-const contactSchema = z.object({
-  firstName: z.string().min(1, 'First name is required').max(100),
-  lastName: z.string().min(1, 'Last name is required').max(100),
-  email: z.string().email('Invalid email address').max(255),
-  subject: z.string().min(1, 'Subject is required').max(200),
-  message: z.string().min(5, 'Message must be at least 5 characters').max(2000),
-});
+// Record the attempt
+async function recordAttempt(
+  ip: string, 
+  email: string, 
+  success: boolean
+): Promise<void> {
+  if (!hasAdminAccess()) return;
+
+  await supabaseAdmin!.from('contact_attempts').insert({
+    ip_address: ip,
+    email: email,
+    success: success,
+    created_at: new Date().toISOString(),
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    
+    // Check honeypot (bots fill this, humans don't)
+    if (body[HONEYPOT_FIELD] && body[HONEYPOT_FIELD].length > 0) {
+      // Silently reject but return success (don't let bots know they're caught)
+      return NextResponse.json({
+        message: 'Message sent successfully!',
+      }, { status: 200 });
+    }
+
+    // Check time-based protection (forms submitted too fast are likely bots)
+    if (body.formTimestamp) {
+      const formTime = new Date(body.formTimestamp).getTime();
+      const now = Date.now();
+      const timeDiff = (now - formTime) / 1000;
+      
+      if (timeDiff < RATE_LIMITS.minTimeSeconds) {
+        return NextResponse.json(
+          { error: 'Please take your time filling out the form.' },
+          { status: 429 }
+        );
+      }
+    }
+
+    // Validate form data
     const validatedData = contactSchema.parse(body);
     const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
 
-    // Rate limit check
-    const rateLimit = checkRateLimit(ipAddress);
+    // Check rate limits
+    const rateLimit = await checkRateLimit(ipAddress, validatedData.email);
     if (!rateLimit.allowed) {
       return NextResponse.json(
         { 
           error: 'Too many requests', 
-          message: `You can only submit 3 messages per day. Try again after ${rateLimit.resetAt?.toISOString()}`,
+          message: `Please try again later. ${rateLimit.reason}`,
           nextAllowedTime: rateLimit.resetAt?.toISOString()
         },
         { status: 429 }
@@ -66,8 +169,10 @@ export async function POST(request: NextRequest) {
 
       if (dbError) {
         console.error('Database error (non-fatal):', dbError);
-        // Continue even if DB fails - email is priority
       }
+
+      // Record attempt for rate limiting
+      await recordAttempt(ipAddress, validatedData.email, true);
     }
 
     // Send notification email to yourself
@@ -128,7 +233,7 @@ export async function POST(request: NextRequest) {
       replyTo: validatedData.email,
     });
 
-    // Send auto-reply to the person who contacted you
+    // Send auto-reply
     const autoReplyResult = await resend.emails.send({
       from: fromAddress,
       to: validatedData.email,
@@ -165,7 +270,7 @@ export async function POST(request: NextRequest) {
               <p>Best,<br>Ryan Tran</p>
             </div>
             <div class="footer">
-              This is an automated reply from ryantran.dev
+              This is an automated reply from ryantran.net
             </div>
           </div>
         </body>
@@ -173,7 +278,7 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Log any email errors (non-fatal)
+    // Log errors (non-fatal)
     if (notificationResult.error) {
       console.error('Notification email error:', notificationResult.error);
     }
@@ -183,7 +288,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       message: 'Message sent successfully!',
-      nextAllowedTime: rateLimit.resetAt?.toISOString()
     }, { status: 200 });
 
   } catch (error) {

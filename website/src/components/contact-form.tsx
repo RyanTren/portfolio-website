@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,18 +29,36 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [rateLimitInfo, setRateLimitInfo] = useState<RateLimitInfo>({});
+  const [errorMessage, setErrorMessage] = useState('');
+  
+  // Honeypot and timestamp refs
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formTimestampRef = useRef<string>('');
+
+  // Set timestamp when form mounts
+  useEffect(() => {
+    formTimestampRef.current = new Date().toISOString();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setRateLimitInfo({});
+    setErrorMessage('');
 
     try {
+      // Include honeypot and timestamp in submission
+      const submissionData = {
+        ...formData,
+        website_url: honeypotRef.current?.value || '',
+        formTimestamp: formTimestampRef.current,
+      };
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
 
       const result = await response.json();
@@ -48,17 +66,21 @@ export function ContactForm() {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+        formTimestampRef.current = new Date().toISOString();
         if (result.nextAllowedTime) {
           setRateLimitInfo({ nextAllowedTime: result.nextAllowedTime });
         }
       } else if (response.status === 429) {
         setSubmitStatus('error');
+        setErrorMessage(result.message || 'Too many requests. Please try again later.');
         setRateLimitInfo({ nextAllowedTime: result.nextAllowedTime });
       } else {
         setSubmitStatus('error');
+        setErrorMessage(result.message || 'Failed to send message. Please try again.');
       }
     } catch (error) {
       setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -71,6 +93,19 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot field - hidden from humans, bots will fill this out */}
+      <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="website_url">Leave this empty</label>
+        <input
+          ref={honeypotRef}
+          type="text"
+          id="website_url"
+          name="website_url"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium mb-2">
@@ -160,19 +195,14 @@ export function ContactForm() {
       {submitStatus === 'error' && (
         <div className="flex items-center gap-2 text-red-600">
           <AlertCircle className="h-5 w-5" />
-          <span>
-            {rateLimitInfo.nextAllowedTime 
-              ? `Rate limit exceeded. You can submit again after ${formatNextAllowedTime(rateLimitInfo.nextAllowedTime)}`
-              : 'Failed to send message. Please try again.'
-            }
-          </span>
+          <span>{errorMessage || 'Failed to send message. Please try again.'}</span>
         </div>
       )}
 
-      {rateLimitInfo.nextAllowedTime && (
+      {rateLimitInfo.nextAllowedTime && submitStatus === 'error' && (
         <div className="flex items-center gap-2 text-amber-600 text-sm">
           <Clock className="h-4 w-4" />
-          <span>Next allowed submission: {formatNextAllowedTime(rateLimitInfo.nextAllowedTime)}</span>
+          <span>You can try again after {formatNextAllowedTime(rateLimitInfo.nextAllowedTime)}</span>
         </div>
       )}
 
