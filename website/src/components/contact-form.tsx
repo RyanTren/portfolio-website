@@ -198,11 +198,17 @@ export function ContactForm() {
 
       {/* Cloudflare Turnstile CAPTCHA */}
       <div className="flex justify-center">
-        <Turnstile
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
-          onSuccess={(token) => setTurnstileToken(token)}
-          onExpire={() => setTurnstileToken('')}
-        />
+        {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? (
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken('')}
+          />
+        ) : (
+          <div className="text-sm text-amber-600 border border-amber-300 rounded-lg p-3 bg-amber-50">
+            ⚠️ CAPTCHA not configured — form submissions are blocked.
+          </div>
+        )}
       </div>
 
       {/* Status messages */}
