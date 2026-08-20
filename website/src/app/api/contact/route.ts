@@ -5,6 +5,9 @@ import { supabaseAdmin, hasAdminAccess } from '@/lib/supabase';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Cloudflare Turnstile secret key
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+
 // Rate limiting configuration
 const RATE_LIMITS = {
   perIP: 3,           // Max submissions per IP per day
@@ -15,6 +18,35 @@ const RATE_LIMITS = {
 
 // Honeypot field name (bots fill this out, humans don't)
 const HONEYPOT_FIELD = 'website_url';
+
+// Verify Cloudflare Turnstile token
+async function verifyTurnstileToken(token: string, ip: string): Promise<boolean> {
+  if (!TURNSTILE_SECRET_KEY) {
+    console.warn('Turnstile not configured, skipping verification');
+    return true;
+  }
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append('secret', TURNSTILE_SECRET_KEY);
+    formData.append('response', token);
+    formData.append('remoteip', ip);
+
+    const result = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    const data = await result.json();
+    return data.success === true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
+}
 
 // Form validation schema with stricter rules
 const contactSchema = z.object({
@@ -49,6 +81,8 @@ const contactSchema = z.object({
   [HONEYPOT_FIELD]: z.string().max(0).optional(),
   // Timestamp from form submission
   formTimestamp: z.string().optional(),
+  // Turnstile token
+  turnstileToken: z.string().min(1, 'CAPTCHA verification required'),
 });
 
 // Check rate limit using Supabase
@@ -142,6 +176,15 @@ export async function POST(request: NextRequest) {
     // Validate form data
     const validatedData = contactSchema.parse(body);
     const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+
+    // Verify Turnstile CAPTCHA
+    const turnstileValid = await verifyTurnstileToken(validatedData.turnstileToken, ipAddress);
+    if (!turnstileValid) {
+      return NextResponse.json(
+        { error: 'CAPTCHA verification failed. Please try again.' },
+        { status: 403 }
+      );
+    }
 
     // Check rate limits
     const rateLimit = await checkRateLimit(ipAddress, validatedData.email);

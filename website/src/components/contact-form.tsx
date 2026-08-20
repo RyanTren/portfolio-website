@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,6 +31,7 @@ export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [rateLimitInfo, setRateLimitInfo] = useState<RateLimitInfo>({});
   const [errorMessage, setErrorMessage] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   
   // Honeypot and timestamp refs
   const honeypotRef = useRef<HTMLInputElement>(null);
@@ -47,12 +49,21 @@ export function ContactForm() {
     setRateLimitInfo({});
     setErrorMessage('');
 
+    // Check Turnstile token
+    if (!turnstileToken) {
+      setSubmitStatus('error');
+      setErrorMessage('Please complete the CAPTCHA verification.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Include honeypot and timestamp in submission
+      // Include honeypot, timestamp, and turnstile token
       const submissionData = {
         ...formData,
         website_url: honeypotRef.current?.value || '',
         formTimestamp: formTimestampRef.current,
+        turnstileToken,
       };
 
       const response = await fetch('/api/contact', {
@@ -66,6 +77,7 @@ export function ContactForm() {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+        setTurnstileToken('');
         formTimestampRef.current = new Date().toISOString();
         if (result.nextAllowedTime) {
           setRateLimitInfo({ nextAllowedTime: result.nextAllowedTime });
@@ -181,6 +193,16 @@ export function ContactForm() {
           rows={5}
           className="cursor-text"
           required
+        />
+      </div>
+
+      {/* Cloudflare Turnstile CAPTCHA */}
+      <div className="flex justify-center">
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onExpire={() => setTurnstileToken('')}
+          theme="auto"
         />
       </div>
 
