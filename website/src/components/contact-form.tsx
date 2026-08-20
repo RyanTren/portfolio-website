@@ -202,7 +202,6 @@ export function ContactForm() {
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
           onSuccess={(token) => setTurnstileToken(token)}
           onExpire={() => setTurnstileToken('')}
-          theme="auto"
         />
       </div>
 
