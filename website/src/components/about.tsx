@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-
+import Image from "next/image"
 
 import {
   Heart,
@@ -32,6 +32,13 @@ export function About() {
       return () => clearInterval(galleryInterval)
     }, [galleryImages.length]);
 
+  // useEffect(() => {
+  // galleryImages.forEach((image) => {
+  //   const img = new Image();
+  //   img.src = image.src;
+  // });
+  // }, []);
+
   return (
     <section id="about" className="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,9 +58,11 @@ export function About() {
             <div className="space-y-6">
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden">
-                  <img
+                  <Image
                     src={galleryImages[selectedImage].src}
                     alt={galleryImages[selectedImage].alt}
+                    fill
+                    priority
                     className="w-full h-full object-cover transition-all duration-400 transition-ease-in-out"
                   />
                 </div>
