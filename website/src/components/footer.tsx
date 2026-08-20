@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 
 import {
@@ -36,7 +38,7 @@ export function Footer() {
                   variant="ghost"
                   size="icon"
                   className="cursor-pointer"
-                  onClick={() => window.open("https://github.com/RyanTren", "_blank")}
+                  onClick={() => window.open("https://github.com/RyanTren", "_blank", "noopener,noreferrer")}
                 >
                   <Github className="h-5 w-5" />
                 </Button>
@@ -45,12 +47,12 @@ export function Footer() {
                   variant="ghost"
                   size="icon"
                   className="cursor-pointer"
-                  onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank")}
+                  onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank", "noopener,noreferrer")}
                 >
                   <Linkedin className="h-5 w-5" />
                 </Button>
 
-                <Button variant="ghost" size="icon" className="cursor-pointer" onClick={() => window.open("mailto:concepting@protonmail.com")}>
+                <Button variant="ghost" size="icon" className="cursor-pointer" onClick={() => window.open("mailto:concepting@protonmail.com", "_blank", "noopener,noreferrer")}>
                   <Mail className="h-5 w-5" />
                 </Button>
               </div>
@@ -69,7 +71,7 @@ export function Footer() {
 
           <div className="border-t border-gray-200 dark:border-gray-800 mt-2 pt-2 flex flex-col sm:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm font-thin">
-              © 2025 ryan tran. built with next.js and deployed on vercel.
+              © {new Date().getFullYear()} ryan tran. built with next.js and deployed on vercel.
             </p>
             <Button variant="ghost" size="sm" onClick={scrollToTop} className="mt-4 sm:mt-0 cursor-pointer">
               Back to Top

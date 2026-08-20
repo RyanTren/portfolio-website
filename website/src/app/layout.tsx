@@ -5,10 +5,31 @@ import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "npm run ryan's site",
-  description:
-    "Ryan Tran - CS + AI and Full-Stack Development",
-  generator: "v0.dev",
+  title: "Ryan Tran | CS + AI Developer",
+  description: "Ryan Tran - CS + AI and Full-Stack Development",
+  openGraph: {
+    title: "Ryan Tran | CS + AI Developer",
+    description: "Ryan Tran - CS + AI and Full-Stack Development",
+    url: "https://ryantran.net",
+    siteName: "Ryan Tran Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ryan Tran Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ryan Tran | CS + AI Developer",
+    description: "Ryan Tran - CS + AI and Full-Stack Development",
+    images: ["/og-image.png"],
+  },
+  metadataBase: new URL("https://ryantran.net"),
 }
 
 export default function RootLayout({
@@ -17,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <style>{`
 html {
@@ -27,7 +48,7 @@ html {
 }
         `}</style>
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

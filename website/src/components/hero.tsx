@@ -1,6 +1,8 @@
+"use client"
 
 import { motion } from "framer-motion"
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import { ScrollIndicator } from "@/components/ui/scroll-indicator"
 import MorphingText from "@/components/eldoraui/morphingtext"
@@ -14,12 +16,9 @@ import {
   Download,
   Code2,
 } from "lucide-react"
+import { profile } from "@/data/profile"
 
-  const roles = [
-      "sde intern @ milliman", 
-      "prev. swe intern @ inpo & aayats",
-      "graduated magna cum laude cs + ai @ ksu"
-    ]
+const roles = profile.roles
 
   const scrollToSection = (sectionId: string) => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
@@ -49,11 +48,16 @@ export function Hero() {
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
           </div>
           
-          <img 
-            src="/hero-background/pond.gif" 
-            alt="ease your mind" 
-            className="absolute inset-0 inset-shadow-black w-full h-full object-scale-fill opacity-15 z-0 rounded-lg"
-          />
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/hero-background/pond.gif"
+              alt="ease your mind"
+              fill
+              unoptimized
+              className="object-cover opacity-15"
+              priority
+            />
+          </div>
 
           {/* Main Content */}
           <div className="relative z-10">
@@ -100,7 +104,7 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   className="text-lg font-medium transition-all duration-300 bg-transparent shadow-md hover:shadow-lg cursor-pointer shadow-2xl/20 inset-shadow-sm hover:inset-shadow-none inset-shadow-current/20 backdrop-blur-sm bg-(--glass-bg) inset-shadow-sm text-neutral-600 w-fit "
-                  onClick={() => window.open("/Tran_Resume_Aug2026.pdf", "_blank")}
+                  onClick={() => window.open("/Tran_Resume_Aug2026.pdf", "_blank", "noopener,noreferrer")}
                 >
                   <Download className="h-5 w-5" />
                   my resume
@@ -120,7 +124,7 @@ export function Hero() {
                 variant="ghost"
                 size="icon"
                 className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
-                onClick={() => window.open("https://github.com/RyanTren", "_blank")}
+                onClick={() => window.open("https://github.com/RyanTren", "_blank", "noopener,noreferrer")}
               >
                 <Github className="h-6 w-6" />
               </Button>
@@ -128,7 +132,7 @@ export function Hero() {
                 variant="ghost"
                 size="icon"
                 className="h-12 w-12 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
-                onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank")}
+                onClick={() => window.open("https://linkedin.com/in/RyanTren/", "_blank", "noopener,noreferrer")}
               >
                 <Linkedin className="h-6 w-6" />
               </Button>
@@ -136,7 +140,7 @@ export function Hero() {
                 variant="ghost"
                 size="icon"
                 className="h-12 w-12 rounded-full hover:bg-pink-100 dark:hover:bg-pink-900/20 transition-all duration-300 hover:scale-110 cursor-pointer"
-                onClick={() => window.open("https://instagram.com/uohto/", "_blank")}
+                onClick={() => window.open("https://instagram.com/uohto/", "_blank", "noopener,noreferrer")}
               >
                 <Instagram className="h-6 w-6" />
               </Button>
