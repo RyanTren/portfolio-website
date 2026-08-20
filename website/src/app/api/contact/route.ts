@@ -19,11 +19,45 @@ const RATE_LIMITS = {
 // Honeypot field name (bots fill this out, humans don't)
 const HONEYPOT_FIELD = 'website_url';
 
-// Verify Cloudflare Turnstile token
+// ============================================
+// IN-MEMORY RATE LIMITER (always works, survives within same serverless instance)
+// ============================================
+const memoryStore = new Map<string, { count: number; resetAt: number }>();
+
+function getMemoryKey(prefix: string, identifier: string): string {
+  return `${prefix}:${identifier}`;
+}
+
+function checkMemoryRateLimit(
+  prefix: string,
+  identifier: string,
+  maxRequests: number,
+  windowMs: number
+): { allowed: boolean; resetAt: Date } {
+  const key = getMemoryKey(prefix, identifier);
+  const now = Date.now();
+  const record = memoryStore.get(key);
+
+  if (!record || now > record.resetAt) {
+    memoryStore.set(key, { count: 1, resetAt: now + windowMs });
+    return { allowed: true, resetAt: new Date(now + windowMs) };
+  }
+
+  if (record.count >= maxRequests) {
+    return { allowed: false, resetAt: new Date(record.resetAt) };
+  }
+
+  record.count++;
+  return { allowed: true, resetAt: new Date(record.resetAt) };
+}
+
+// ============================================
+// VERIFY TURNSTILE TOKEN
+// ============================================
 async function verifyTurnstileToken(token: string, ip: string): Promise<boolean> {
   if (!TURNSTILE_SECRET_KEY) {
-    console.warn('Turnstile not configured, skipping verification');
-    return true;
+    console.warn('⚠️ TURNSTILE_SECRET_KEY not configured - CAPTCHA disabled');
+    return false; // FAIL CLOSED - don't allow submissions without CAPTCHA
   }
 
   try {
@@ -41,14 +75,17 @@ async function verifyTurnstileToken(token: string, ip: string): Promise<boolean>
     });
 
     const data = await result.json();
+    console.log(`🔑 Turnstile verification: ${data.success ? 'PASS' : 'FAIL'} for IP ${ip}`);
     return data.success === true;
   } catch (error) {
-    console.error('Turnstile verification error:', error);
+    console.error('❌ Turnstile verification error:', error);
     return false;
   }
 }
 
-// Form validation schema with stricter rules
+// ============================================
+// FORM VALIDATION
+// ============================================
 const contactSchema = z.object({
   firstName: z.string()
     .min(1, 'First name is required')
@@ -62,7 +99,6 @@ const contactSchema = z.object({
     .email('Invalid email address')
     .max(255, 'Email too long')
     .refine((email) => {
-      // Block disposable email domains
       const disposableDomains = [
         'dsadsa.com', 'mgasjkd.com', 'tempmail.com', 'throwaway.com',
         'guerrillamail.com', 'mailinator.com', 'yopmail.com',
@@ -77,95 +113,128 @@ const contactSchema = z.object({
   message: z.string()
     .min(10, 'Message must be at least 10 characters')
     .max(2000, 'Message too long'),
-  // Honeypot field - should be empty
   [HONEYPOT_FIELD]: z.string().max(0).optional(),
-  // Timestamp from form submission
   formTimestamp: z.string().optional(),
-  // Turnstile token
   turnstileToken: z.string().min(1, 'CAPTCHA verification required'),
 });
 
-// Check rate limit using Supabase
+// ============================================
+// DUAL-LAYER RATE CHECK (Memory + Supabase)
+// ============================================
 async function checkRateLimit(
-  ip: string, 
+  ip: string,
   email: string
 ): Promise<{ allowed: boolean; resetAt?: Date; reason?: string }> {
-  if (!hasAdminAccess()) {
-    // If no Supabase, use basic in-memory (less secure but functional)
-    return { allowed: true };
-  }
+  const windowMs = RATE_LIMITS.windowHours * 60 * 60 * 1000;
 
-  const now = new Date();
-  const windowStart = new Date(now.getTime() - RATE_LIMITS.windowHours * 60 * 60 * 1000);
-
-  // Check IP rate limit
-  const { count: ipCount } = await supabaseAdmin!
-    .from('contact_attempts')
-    .select('*', { count: 'exact', head: true })
-    .eq('ip_address', ip)
-    .gte('created_at', windowStart.toISOString());
-
-  if (ipCount && ipCount >= RATE_LIMITS.perIP) {
-    return { 
-      allowed: false, 
-      reason: 'IP rate limit exceeded',
-      resetAt: new Date(windowStart.getTime() + RATE_LIMITS.windowHours * 60 * 60 * 1000)
+  // Layer 1: In-memory rate limit (always works, per-instance)
+  const ipMemory = checkMemoryRateLimit('ip', ip, RATE_LIMITS.perIP, windowMs);
+  if (!ipMemory.allowed) {
+    return {
+      allowed: false,
+      reason: `IP rate limit exceeded (max ${RATE_LIMITS.perIP} per day)`,
+      resetAt: ipMemory.resetAt,
     };
   }
 
-  // Check email rate limit
-  const { count: emailCount } = await supabaseAdmin!
-    .from('contact_attempts')
-    .select('*', { count: 'exact', head: true })
-    .eq('email', email)
-    .gte('created_at', windowStart.toISOString());
-
-  if (emailCount && emailCount >= RATE_LIMITS.perEmail) {
-    return { 
-      allowed: false, 
-      reason: 'Email rate limit exceeded',
-      resetAt: new Date(windowStart.getTime() + RATE_LIMITS.windowHours * 60 * 60 * 1000)
+  const emailMemory = checkMemoryRateLimit('email', email, RATE_LIMITS.perEmail, windowMs);
+  if (!emailMemory.allowed) {
+    return {
+      allowed: false,
+      reason: `Email rate limit exceeded (max ${RATE_LIMITS.perEmail} per day)`,
+      resetAt: emailMemory.resetAt,
     };
   }
 
-  return { allowed: true };
+  // Layer 2: Supabase persistent rate limit (survives across instances)
+  if (hasAdminAccess()) {
+    try {
+      const now = new Date();
+      const windowStart = new Date(now.getTime() - windowMs);
+
+      const { count: ipCount } = await supabaseAdmin!
+        .from('contact_attempts')
+        .select('*', { count: 'exact', head: true })
+        .eq('ip_address', ip)
+        .gte('created_at', windowStart.toISOString());
+
+      if (ipCount && ipCount >= RATE_LIMITS.perIP) {
+        return {
+          allowed: false,
+          reason: `IP rate limit exceeded (max ${RATE_LIMITS.perIP} per day)`,
+          resetAt: new Date(windowStart.getTime() + windowMs),
+        };
+      }
+
+      const { count: emailCount } = await supabaseAdmin!
+        .from('contact_attempts')
+        .select('*', { count: 'exact', head: true })
+        .eq('email', email)
+        .gte('created_at', windowStart.toISOString());
+
+      if (emailCount && emailCount >= RATE_LIMITS.perEmail) {
+        return {
+          allowed: false,
+          reason: `Email rate limit exceeded (max ${RATE_LIMITS.perEmail} per day)`,
+          resetAt: new Date(windowStart.getTime() + windowMs),
+        };
+      }
+    } catch (error) {
+      console.error('⚠️ Supabase rate limit check failed (falling back to memory):', error);
+    }
+  }
+
+  return { allowed: true, resetAt: ipMemory.resetAt };
 }
 
-// Record the attempt
+// ============================================
+// RECORD ATTEMPT TO SUPABASE
+// ============================================
 async function recordAttempt(
-  ip: string, 
-  email: string, 
+  ip: string,
+  email: string,
   success: boolean
 ): Promise<void> {
   if (!hasAdminAccess()) return;
 
-  await supabaseAdmin!.from('contact_attempts').insert({
-    ip_address: ip,
-    email: email,
-    success: success,
-    created_at: new Date().toISOString(),
-  });
+  try {
+    await supabaseAdmin!.from('contact_attempts').insert({
+      ip_address: ip,
+      email: email,
+      success: success,
+      created_at: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error('⚠️ Failed to record attempt:', error);
+  }
 }
 
+// ============================================
+// MAIN HANDLER
+// ============================================
 export async function POST(request: NextRequest) {
+  const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  console.log(`📩 Contact form submission from IP: ${ipAddress}`);
+
   try {
     const body = await request.json();
-    
-    // Check honeypot (bots fill this, humans don't)
+
+    // 1. HONEYPOT CHECK
     if (body[HONEYPOT_FIELD] && body[HONEYPOT_FIELD].length > 0) {
-      // Silently reject but return success (don't let bots know they're caught)
+      console.log(`🤖 Honeypot triggered from IP: ${ipAddress}`);
       return NextResponse.json({
         message: 'Message sent successfully!',
       }, { status: 200 });
     }
 
-    // Check time-based protection (forms submitted too fast are likely bots)
+    // 2. TIME-BASED CHECK (minimum 10 seconds to fill form)
     if (body.formTimestamp) {
       const formTime = new Date(body.formTimestamp).getTime();
       const now = Date.now();
       const timeDiff = (now - formTime) / 1000;
-      
+
       if (timeDiff < RATE_LIMITS.minTimeSeconds) {
+        console.log(`⏱️ Too fast (${timeDiff.toFixed(1)}s) from IP: ${ipAddress}`);
         return NextResponse.json(
           { error: 'Please take your time filling out the form.' },
           { status: 429 }
@@ -173,25 +242,26 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Validate form data
+    // 3. VALIDATE FORM DATA
     const validatedData = contactSchema.parse(body);
-    const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
 
-    // Verify Turnstile CAPTCHA
+    // 4. VERIFY TURNSTILE CAPTCHA
     const turnstileValid = await verifyTurnstileToken(validatedData.turnstileToken, ipAddress);
     if (!turnstileValid) {
+      console.log(`❌ CAPTCHA failed from IP: ${ipAddress}`);
       return NextResponse.json(
         { error: 'CAPTCHA verification failed. Please try again.' },
         { status: 403 }
       );
     }
 
-    // Check rate limits
+    // 5. CHECK RATE LIMITS
     const rateLimit = await checkRateLimit(ipAddress, validatedData.email);
     if (!rateLimit.allowed) {
+      console.log(`🚫 Rate limited: ${rateLimit.reason} from IP: ${ipAddress}`);
       return NextResponse.json(
-        { 
-          error: 'Too many requests', 
+        {
+          error: 'Too many requests',
           message: `Please try again later. ${rateLimit.reason}`,
           nextAllowedTime: rateLimit.resetAt?.toISOString()
         },
@@ -199,7 +269,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Save to Supabase (if configured)
+    console.log(`✅ All checks passed for IP: ${ipAddress}, Email: ${validatedData.email}`);
+
+    // 6. SAVE TO SUPABASE
     if (hasAdminAccess()) {
       const { error: dbError } = await supabaseAdmin!.from('contacts').insert({
         first_name: validatedData.firstName,
@@ -214,11 +286,11 @@ export async function POST(request: NextRequest) {
         console.error('Database error (non-fatal):', dbError);
       }
 
-      // Record attempt for rate limiting
+      // Record attempt for persistent rate limiting
       await recordAttempt(ipAddress, validatedData.email, true);
     }
 
-    // Send notification email to yourself
+    // 7. SEND EMAILS
     const fromAddress = process.env.EMAIL_FROM || 'Portfolio Contact <noreply@resend.dev>';
     const toAddress = process.env.EMAIL_TO || 'your-email@domain.com';
 
@@ -276,7 +348,6 @@ export async function POST(request: NextRequest) {
       replyTo: validatedData.email,
     });
 
-    // Send auto-reply
     const autoReplyResult = await resend.emails.send({
       from: fromAddress,
       to: validatedData.email,
@@ -321,7 +392,6 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Log errors (non-fatal)
     if (notificationResult.error) {
       console.error('Notification email error:', notificationResult.error);
     }
@@ -335,7 +405,7 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Contact form error:', error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({
         error: 'Validation failed',
