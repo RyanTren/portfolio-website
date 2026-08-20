@@ -1,6 +1,7 @@
 -- Contact attempts table for rate limiting
 -- Run this in your Supabase SQL Editor
 
+-- Create table if it doesn't exist
 CREATE TABLE IF NOT EXISTS contact_attempts (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   ip_address TEXT NOT NULL,
@@ -9,23 +10,23 @@ CREATE TABLE IF NOT EXISTS contact_attempts (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Index for rate limit queries
+-- Index for rate limit queries (safe to re-run)
 CREATE INDEX IF NOT EXISTS idx_contact_attempts_ip_created 
   ON contact_attempts(ip_address, created_at);
 
 CREATE INDEX IF NOT EXISTS idx_contact_attempts_email_created 
   ON contact_attempts(email, created_at);
 
--- RLS policies (for security)
+-- RLS policies (drop first if they exist, then recreate)
 ALTER TABLE contact_attempts ENABLE ROW LEVEL SECURITY;
 
--- Allow service role to insert (for rate limiting)
+DROP POLICY IF EXISTS "Service role can insert contact attempts" ON contact_attempts;
 CREATE POLICY "Service role can insert contact attempts" 
   ON contact_attempts 
   FOR INSERT 
   WITH CHECK (true);
 
--- Allow service role to read (for rate limiting checks)
+DROP POLICY IF EXISTS "Service role can read contact attempts" ON contact_attempts;
 CREATE POLICY "Service role can read contact attempts" 
   ON contact_attempts 
   FOR SELECT 
@@ -34,21 +35,21 @@ CREATE POLICY "Service role can read contact attempts"
 -- ============================================
 -- AUTO-CLEANUP CRON JOB
 -- ============================================
--- This runs daily at 2 AM UTC to delete records older than 7 days
--- Requires the pg_cron extension (enabled by default in Supabase)
-
 -- Enable pg_cron extension if not already enabled
 CREATE EXTENSION IF NOT EXISTS pg_cron;
 
--- Create the cron job to clean up old records
+-- Remove old cron job if it exists, then recreate
+SELECT cron.unschedule('cleanup-contact-attempts');
+
+-- Create the cron job to clean up old records (daily at 2 AM UTC)
 SELECT cron.schedule(
-  'cleanup-contact-attempts',           -- Job name
-  '0 2 * * *',                          -- Run daily at 2 AM UTC
+  'cleanup-contact-attempts',
+  '0 2 * * *',
   $$
   DELETE FROM contact_attempts 
   WHERE created_at < NOW() - INTERVAL '7 days';
   $$
 );
 
--- Verify the cron job was created
--- You can check by running: SELECT * FROM cron.job;
+-- Verify: run this to check
+-- SELECT * FROM cron.job;
