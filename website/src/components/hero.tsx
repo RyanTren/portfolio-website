@@ -100,7 +100,7 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   className="text-lg font-medium transition-all duration-300 bg-transparent shadow-md hover:shadow-lg cursor-pointer shadow-2xl/20 inset-shadow-sm hover:inset-shadow-none inset-shadow-current/20 backdrop-blur-sm bg-(--glass-bg) inset-shadow-sm text-neutral-600 w-fit "
-                  onClick={() => window.open("/Tran_Resume_Mar2026.pdf", "_blank")}
+                  onClick={() => window.open("/Tran_Resume_Aug2026.pdf", "_blank")}
                 >
                   <Download className="h-5 w-5" />
                   my resume
